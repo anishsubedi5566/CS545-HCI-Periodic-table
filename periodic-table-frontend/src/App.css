@@ -1,3 +1,50 @@
 .App {
   text-align: center;
 }
+
+.periodic-table{
+  display: grid;
+  grid-template-columns: repeat(18, 72px);
+  grid-template-rows: repeat(10, 72px);
+  grid-gap: 3px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.element {
+  background: white;
+  border: 1px solid #aaa;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+}
+
+.element:hover {
+  transform: scale(1.25, 1.25);
+  z-index: 1;
+}
+
+.element .number {
+  font-size: 9px;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
+
+.element .name {
+  font-size: 9px;
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+}
+
+.Lanthanide-series p {
+  font-size: 9px;
+}
+
+.Actinide-series p{
+  font-size: 9px;
+}
