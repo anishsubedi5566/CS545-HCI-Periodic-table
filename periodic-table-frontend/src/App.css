@@ -2,6 +2,33 @@
   text-align: center;
 }
 
+.modalStyle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 75vh;
+  height: 70vh;
+  background-color: white;
+  box-shadow: 24;
+  text-align: center;
+}
+
+.header{
+  justify-content: space-between;
+}
+
+.modalFields{
+  width: 50vh;
+  height: 10vh;
+}
+
+.modalButtons{
+  width: 30vh;
+  height: 7vh;
+  margin-top: 30px;
+}
+
 .periodic-table{
   display: grid;
   grid-template-columns: repeat(18, 72px);
@@ -10,7 +37,7 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -40%);
 }
 
 .element {
