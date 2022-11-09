@@ -21,11 +21,20 @@ const colorMap = {
 };  
 
 const PeriodicTable = () => {
+
+    const handleElementClick = (atomicNo) => {
+        const selectedElement = data.elements.filter(
+			(element) => element.number === atomicNo
+		)[0];
+        console.log(selectedElement);
+    }
+
     return(
         <div className="periodic-table">
         {
             data.elements.map(element => 
                 <div
+                    onClick={() => handleElementClick(element.number)}
                     className="element"
                     key={element.name}
                     style={{

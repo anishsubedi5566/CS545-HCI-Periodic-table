@@ -52,6 +52,7 @@
 .element:hover {
   transform: scale(1.25, 1.25);
   z-index: 1;
+  cursor: pointer;
 }
 
 .element .number {
@@ -74,4 +75,41 @@
 
 .Actinide-series p{
   font-size: 9px;
+}
+
+.Home-Page {
+  margin-top: 20%;
+}
+
+.navbar {
+	height: 35px;
+	display: flex;
+	justify-content: space-between;
+	padding: 10px;
+	background: var(--app-popup-top);
+	box-shadow: 0px 5px 22px rgba(0, 0, 0, 0.3);
+}
+
+.navbar-item {
+	align-self: center;
+	margin: auto;
+}
+
+.navbar-name {
+	font-weight: 700;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+  color: black;
+  text-decoration: none;
+}
+
+.home-link{
+  text-decoration: none;
+  color: black;
+}
+
+.quiz-link {
+  align-self: center;
+  text-align: right;
+  padding-right: 1rem;
 }
