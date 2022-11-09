@@ -1,5 +1,6 @@
-import React from "react";
+import React, {useState} from "react";
 import data from "../PeriodicTableJSON.json";
+import Element from "../Modal/Element";
 import "../App.css";
 
 const colorMap = {
@@ -22,11 +23,20 @@ const colorMap = {
 
 const PeriodicTable = () => {
 
+    const [showElementModal, setShowElementModal] = useState(false);
+    const [elementData, setElementData] = useState(null);
+
     const handleElementClick = (atomicNo) => {
         const selectedElement = data.elements.filter(
 			(element) => element.number === atomicNo
 		)[0];
-        console.log(selectedElement);
+        setElementData(selectedElement);
+        setShowElementModal(true);
+    }
+
+    const handleCloseElementModal = () => {
+        setShowElementModal(false);
+        setElementData(null);
     }
 
     return(
@@ -65,6 +75,14 @@ const PeriodicTable = () => {
                 <p>89-103</p>
                 <p>Ac-Lr</p>
             </div>
+
+            {showElementModal && (
+                <Element 
+                    isOpen={showElementModal}
+                    element={elementData}
+                    handleClose={handleCloseElementModal}
+                />
+            )}
         </div>
     )
 }
