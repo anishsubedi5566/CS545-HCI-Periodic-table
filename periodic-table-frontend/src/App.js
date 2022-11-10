@@ -1,15 +1,25 @@
-import "./App.css";
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import PeriodicTable from "./components/PeriodicTable";
-
-import QuizMode from "./components/QuizMode";
+import Quiz from "./components/Quiz";
+import "./App.css";
+import NavBar from "./components/NavBar";
 
 function App() {
   return (
-    <div className="App">
-      <h1>Periodic Table</h1>
-      {/* <PeriodicTable /> */}
-      <QuizMode />
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <div className="App-Header">
+          <NavBar />
+        </div>
+        <div className="App-Body">
+          <Routes>
+            <Route exact path="/" element={<PeriodicTable />} />
+            <Route path="/periodic-table/quiz" element={<Quiz />} />
+          </Routes>
+        </div>
+      </div>
+    </BrowserRouter>
   );
 }
 
