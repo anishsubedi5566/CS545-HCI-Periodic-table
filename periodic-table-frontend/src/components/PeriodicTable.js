@@ -59,6 +59,15 @@ const PeriodicTable = () => {
 
     return(
         <div className="periodic-table">
+
+        {showElementModal && (
+            <Element 
+                isOpen={showElementModal}
+                element={elementData}
+                handleClose={handleCloseElementModal}
+            />
+        )}
+
         {
             data.elements.map(element => 
                 <div
@@ -93,14 +102,6 @@ const PeriodicTable = () => {
                 <p>89-103</p>
                 <p>Ac-Lr</p>
             </div>
-
-            {showElementModal && (
-                <Element 
-                    isOpen={showElementModal}
-                    element={elementData}
-                    handleClose={handleCloseElementModal}
-                />
-            )}
         </div>
     )
 }

@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import ReactModal from 'react-modal';
 import ElementValue from "../Modal/ElementValue";
 import ElementLable from "./ElementLable";
+import ScienceIcon from '@mui/icons-material/Science';
 import '../App.css';
 
 ReactModal.setAppElement('#root');
@@ -35,7 +36,6 @@ function Element(props){
     }
 
     return(
-        <div>
             <ReactModal 
                 overlayClassName="ele-detail-container"
                 className='ele-det-holder'
@@ -104,10 +104,22 @@ function Element(props){
                         <ElementValue label="Atomic Mass: " value={`${elementData.atomic_mass} (g/mol)`} />
                         <ElementValue label="Density: " value={`${elementData.density} (g/cm³)`} />
                         <ElementValue label="Phase: " value={elementData.phase} />
+                        <ElementValue label="Molar Heat: " value={`${elementData.molar_heat} J/(mol·K)`} />
+                        <ElementValue label="Group: " value={elementData.xpos} />
+                        <ElementValue label="Period: " value={elementData.ypos} />
+                        <ElementValue label="Emmision spectrum: " value={elementData.spectral_img ? elementData.spectral_img : 'N/A'} />
+                        
+                        <ElementLable label="Atomic Properties" />
+						<ElementValue label="Electron Configuration: " value={elementData.electron_configuration} />
+
+                        <ElementLable label="Reactivity" />
+                        <ElementValue label="Electronegativity Pauling: " value={elementData.electronegativity_pauling} />
+                        <ElementValue label="Electron Affinity: " value={`${elementData.electron_affinity} kJ/mol`} />
+						
                     </footer>
                 </section>
+                <div className="bottom-space"></div>
             </ReactModal>
-        </div>
     )
 }
 
