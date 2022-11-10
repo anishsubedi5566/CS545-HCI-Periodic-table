@@ -119,12 +119,6 @@
 }
 
 /* Modal */
-.ele-det-holder {
-  width: 100%;
-  max-width: 500px;
-  margin: auto;
-}
-
 .ele-detail-container {
   width: 100%;
   height: 100vh;
@@ -136,6 +130,12 @@
   padding: 60px 15px;
   color: #fff;
 	overflow: auto;
+}
+
+.ele-det-holder {
+  width: 100%;
+  max-width: 500px;
+  margin: auto;
 }
 
 .ele-det-header {
@@ -184,21 +184,20 @@
 }
 
 .ele-det-back-btn {
-  background-image: url(../public/Icons/back-button.svg);
+  background-image: url(./Icons/back-button.svg);
   background-size: 50%;
   background-position: center;
   background-repeat: no-repeat;
 }
 
 .ele-det-wiki-btn {
-  background-image: url(../public/Icons/wikipedia-button.svg);
+  background-image: url(./Icons/wikipedia-button.svg);
   background-size: 50%;
   background-position: center;
   background-repeat: no-repeat;
 }
 
 .ele-det-header-element-tag {
-  background: #e45143;
   padding: 4px 10px;
   border-radius: 0 3px 3px 0;
   display: table;
@@ -244,4 +243,85 @@
 .ele-det-header-weight {
 	font-size: 14px;
 	opacity: 0.7;
+}
+
+.ele-det-header-footer {
+  height: 50px;
+  justify-content: space-between;
+	background-color: #1c1f26;
+	padding: 7px 0;
+}
+
+.ele-det-nav-btn {
+  flex: 1 1;
+	height: 100%;
+  align-self: center;
+  text-align: center;
+	display: grid;
+	place-items: center;
+	font-size: 10px;
+	text-transform: uppercase;
+	word-spacing: 5px;
+	letter-spacing: 0.5px;
+	background-repeat: no-repeat;
+	background-size: 10px;
+	cursor: pointer;
+}
+
+.ele-prev-btn {
+	background-position: 7px center;
+	background-image: url(./Icons/prev-button.svg);
+	border-right: 1px solid rgba(114, 114, 114, 0.35);
+}
+
+.ele-next-btn {
+	background-position: calc(100% - 7px) center;
+	background-image: url(./Icons/next-button.svg);
+}
+
+.ele-det-info-box{
+  background: #1c1f26;
+	padding: 14px 15px;
+	border-bottom: 1px solid rgba(114, 114, 114, 0.35);
+}
+
+.ele-det-info-box:last-child {
+	border-bottom: none;
+}
+
+.ele-det-info-box label {
+  opacity: 0.5;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-size: 10px;
+}
+
+.ele-det-info-value{
+  font-size: 14px;
+	letter-spacing: 0.5px;
+	line-height: 1.6;
+}
+
+.ele-det-footer-box {
+	height: 50px;
+	background: #000;
+}
+
+.ele-det-group-label {
+	padding: 14px 15px;
+	background: #333;
+}
+
+.ele-det-group-label img {
+	width: 20px;
+	object-fit: contain;
+	align-self: center;
+}
+
+.ele-det-group-name {
+	align-self: center;
+	padding-left: 20px;
+	font-weight: 300;
+	font-size: 15px;
+	letter-spacing: 0.5px;
 }
