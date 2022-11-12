@@ -84,6 +84,7 @@ const Login = (props) => {
   );
 };
 const SignUp = (props) => {
+  const navigate = useNavigate();
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
@@ -101,7 +102,16 @@ const SignUp = (props) => {
     } else {
       AppUserCreation({ email, password, name: username }).then((res) => {
         if (res === true) {
-          toast.success("Successfully Signed In");
+          const id = toast.loading("Creating Account...");
+          setTimeout(() => {
+            toast.update(id, {
+              render: "Signed In",
+              type: "success",
+              isLoading: false,
+              autoClose: 2000,
+            });
+            navigate("/");
+          }, 1000);
         } else {
           toast.error(res.message);
         }
