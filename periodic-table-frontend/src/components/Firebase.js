@@ -1,15 +1,20 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import {createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, signOut, updateProfile} from "firebase/auth";
-import { getAnalytics } from "firebase/analytics";
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  signInWithEmailAndPassword,
+  signOut,
+  updateProfile,
+} from "firebase/auth";
+import {
+  addDoc,
+  collection,
+  getDocs,
+  getFirestore,
+  updateDoc,
+} from "firebase/firestore";
 import firebaseui, { auth } from "firebaseui";
-import firebase from "firebase/app"
-import { toast } from "react-toastify";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyAVhf2zRYcIrOMVZSxhus70-IgLLSh_s2c",
   authDomain: "periodic-table-b89e9.firebaseapp.com",
@@ -17,65 +22,102 @@ const firebaseConfig = {
   storageBucket: "periodic-table-b89e9.appspot.com",
   messagingSenderId: "472558676995",
   appId: "1:472558676995:web:95b5da72a5a477979cf236",
-  measurementId: "G-28FF3QGQMZ" 
+  measurementId: "G-28FF3QGQMZ",
 };
-
+function Auth() {
+  return getAuth();
+}
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-async function AppUserCreation(data){
-  console.log("data in fb",data)
-  console.log("auth",auth)
-  let user;
-  try{
-    user = await createUserWithEmailAndPassword(getAuth(), data.email, data.password, data.name)
-  }
-  catch(error){
-    console.log(error)
-    toast.error(error.message)
-  }
-  if (user.user){
-    updateProfile(getAuth().currentUser, {
-      displayName: data.name
-    })
-    console.log("user",user)
-    return true
-  }
-  return false
+const db = getFirestore(app);
+
+async function AppUserDbUpdate(score) {
+  const querySnapshot = await getDocs(collection(db, "users"));
+  //current user
+  let user = getAuth().currentUser;
+  querySnapshot.forEach((doc) => {
+    if (doc.data().id === user.uid) {
+      updateDoc(doc.ref, {
+        score: score,
+      });
+    }
+  });
 }
 
-async function AppUserLogout(){
-  let user;
-  try{
-    user = await signOut(getAuth()).then((res)=>{
-      localStorage.removeItem("user")
-      toast.success("User logged out")
-    }
-    )
-    return user
-  }
-  catch(error){
-    console.log(error)
-    toast.error(error.message)
+async function AppUserDb(username, score, uid) {
+  try {
+    const user = await addDoc(collection(db, "users"), {
+      username: username,
+      score: score,
+      uid: uid,
+    });
+    const querySnapshot = await getDocs(collection(db, "users"));
+    querySnapshot.forEach((doc) => {
+      console.log(
+        `${doc.id} => ${doc.data().username} => ${doc.data().score} => ${
+          doc.data().uid
+        }`
+      );
+    });
+
+    return true;
+  } catch (error) {
+    console.log(error);
+    return error;
   }
 }
 
-async function AppUserLogin(data){
-  console.log("userlogin",data)
-  console.log("auth",auth)
+async function AppUserCreation(data) {
+  console.log("data in fb", data);
+  console.log("auth", auth);
   let user;
-  try{
-    user = await signInWithEmailAndPassword(getAuth(), data.email, data.password).then((res)=>{
-      toast.success("User logged in")
-      localStorage.setItem("user", JSON.stringify(res.user))
-      
+  try {
+    let user = await createUserWithEmailAndPassword(
+      getAuth(),
+      data.email,
+      data.password,
+      data.name
+    );
+    if (user.user) {
+      updateProfile(getAuth().currentUser, {
+        displayName: data.name,
+      });
+      AppUserDb(data.name, null, user.user.uid);
+      console.log("user", user);
+      return true;
     }
-    )
-    return user
-  }
-  catch(error){
-    console.log(error)
-    localStorage.removeItem("user")
-    toast.error(error.message)
+    return true;
+  } catch (error) {
+    console.log(error);
+    return error;
   }
 }
-export {AppUserCreation,AppUserLogin, AppUserLogout};
+
+async function AppUserLogout() {
+  let user;
+  try {
+    user = await signOut(getAuth()).then((res) => {});
+    return user;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+}
+
+async function AppUserLogin(data) {
+  console.log("userlogin", data);
+  console.log("auth", auth);
+  let user;
+  try {
+    user = await signInWithEmailAndPassword(
+      getAuth(),
+      data.email,
+      data.password
+    );
+    return true;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+}
+export { AppUserCreation, AppUserLogin, AppUserLogout, Auth };

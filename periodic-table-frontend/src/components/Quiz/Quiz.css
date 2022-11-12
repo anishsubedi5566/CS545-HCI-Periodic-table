@@ -90,3 +90,12 @@
   align-items: center;
   background: #f5f5f5;
 }
+
+.quiz-options {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #f5f5f5;
+  height: 80vh;
+}
