@@ -7,7 +7,13 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
-import { addDoc, collection, getFirestore } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  getDocs,
+  getFirestore,
+  updateDoc,
+} from "firebase/firestore";
 import firebaseui, { auth } from "firebaseui";
 const firebaseConfig = {
   apiKey: "AIzaSyAVhf2zRYcIrOMVZSxhus70-IgLLSh_s2c",
@@ -25,13 +31,35 @@ function Auth() {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-async function AppUserDb(username, score) {
+async function AppUserDbUpdate(score) {
+  const querySnapshot = await getDocs(collection(db, "users"));
+  //current user
+  let user = getAuth().currentUser;
+  querySnapshot.forEach((doc) => {
+    if (doc.data().id === user.uid) {
+      updateDoc(doc.ref, {
+        score: score,
+      });
+    }
+  });
+}
+
+async function AppUserDb(username, score, uid) {
   try {
     const user = await addDoc(collection(db, "users"), {
       username: username,
       score: score,
+      uid: uid,
     });
-    console.log("into db", user);
+    const querySnapshot = await getDocs(collection(db, "users"));
+    querySnapshot.forEach((doc) => {
+      console.log(
+        `${doc.id} => ${doc.data().username} => ${doc.data().score} => ${
+          doc.data().uid
+        }`
+      );
+    });
+
     return true;
   } catch (error) {
     console.log(error);
@@ -54,7 +82,7 @@ async function AppUserCreation(data) {
       updateProfile(getAuth().currentUser, {
         displayName: data.name,
       });
-      AppUserDb(data.name, null);
+      AppUserDb(data.name, null, user.user.uid);
       console.log("user", user);
       return true;
     }
