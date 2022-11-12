@@ -7,15 +7,8 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
-import { getAnalytics } from "firebase/analytics";
+import { addDoc, collection, getFirestore } from "firebase/firestore";
 import firebaseui, { auth } from "firebaseui";
-import firebase from "firebase/app";
-import { toast } from "react-toastify";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyAVhf2zRYcIrOMVZSxhus70-IgLLSh_s2c",
   authDomain: "periodic-table-b89e9.firebaseapp.com",
@@ -30,6 +23,22 @@ function Auth() {
 }
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+async function AppUserDb(username, score) {
+  try {
+    const user = await addDoc(collection(db, "users"), {
+      username: username,
+      score: score,
+    });
+    console.log("into db", user);
+    return true;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+}
+
 async function AppUserCreation(data) {
   console.log("data in fb", data);
   console.log("auth", auth);
@@ -45,6 +54,7 @@ async function AppUserCreation(data) {
       updateProfile(getAuth().currentUser, {
         displayName: data.name,
       });
+      AppUserDb(data.name, null);
       console.log("user", user);
       return true;
     }
