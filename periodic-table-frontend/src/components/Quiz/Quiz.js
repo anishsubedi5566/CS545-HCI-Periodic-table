@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { q } from "./questions";
 import { FcOk } from "react-icons/fc";
 import { MdCancel } from "react-icons/md";
+import { AppUserDbUpdate } from "../Firebase";
 import "./Quiz.css";
 import { Button, Card, Grid } from "@mui/material";
 import { Box } from "@mui/system";
+import { useNavigate } from "react-router-dom";
 const questions = q.sort(() => Math.random() - 0.5);
 questions.map((question, idx) => {
   question.answerOptions = question.answerOptions.sort(
@@ -13,13 +15,25 @@ questions.map((question, idx) => {
   return question;
 });
 const Quiz = () => {
+  const navigate = useNavigate();
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [showScore, setShowScore] = useState(false);
   const [score, setScore] = useState(0);
   const [result, setResult] = useState([]);
   const [showResult, setShowResult] = useState(false);
   const [isAnswered, setIsAnswered] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(false);
+  const handleRestart = () => {
+    setCurrentQuestion(0);
+    setShowScore(false);
+    setScore(0);
+    setResult([]);
+    setShowResult(false);
+    setIsAnswered(false);
+    setIsDisabled(false);
+  };
   const handleAnswerOptionClick = (isCorrect, answerText) => {
+    setIsDisabled(true);
     setIsAnswered(true);
     console.log(isCorrect);
     if (isCorrect) {
@@ -51,9 +65,12 @@ const Quiz = () => {
         setCurrentQuestion(nextQuestion);
       } else {
         setShowScore(true);
+
+        AppUserDbUpdate(score);
         setShowResult(true);
       }
       setIsAnswered(false);
+      setIsDisabled(false);
     }, 700);
   };
   return (
@@ -63,9 +80,8 @@ const Quiz = () => {
           <h3>
             You scored {score} out of {questions.length}
           </h3>
-          <Button onClick={() => window.location.reload(false)}>
-            Restart Quiz
-          </Button>
+          <Button onClick={() => handleRestart()}>Restart Quiz</Button>
+          <Button onClick={() => navigate("/")}>Home</Button>
           <Box className="results">
             {result.map((item, index) => (
               <Card
@@ -135,6 +151,7 @@ const Quiz = () => {
                         answerOption.answerText
                       )
                     }
+                    disabled={isDisabled}
                   >
                     {answerOption.answerText}
                   </button>

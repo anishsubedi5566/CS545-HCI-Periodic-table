@@ -37,7 +37,7 @@ const NavBar = () => {
 
   return (
     <div className="navbar">
-      <div className="navbar-item navbar-name">
+      <div className="navbar-name">
         <Link className="home-link" to="/">
           Periodic Table
         </Link>

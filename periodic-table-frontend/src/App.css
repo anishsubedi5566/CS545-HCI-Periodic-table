@@ -86,7 +86,7 @@
 }
 
 .navbar-item {
-  align-self: center;
+  align-self: left;
   margin: auto;
 }
 
@@ -96,6 +96,8 @@
   text-transform: uppercase;
   color: black;
   text-decoration: none;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 .home-link {

@@ -5,6 +5,7 @@ import { Box, Button } from "@mui/material";
 import "./Quiz/Quiz.css";
 import { RiMedalFill } from "react-icons/ri";
 import { HiAcademicCap } from "react-icons/hi";
+import Progress from "./Quiz/Progress";
 const QuizMode = () => {
   const [quizMode, setQuizMode] = useState("");
   return (
@@ -32,10 +33,12 @@ const QuizMode = () => {
           >
             Competitive
           </Button>
+          <Button onClick={() => setQuizMode("Progress")}>Progress</Button>
         </Box>
       )}
       {quizMode === "quiz" && <Quiz />}
       {quizMode === "competitive" && <Competitive />}
+      {quizMode === "Progress" && <Progress />}
     </div>
   );
 };
