@@ -2,28 +2,10 @@ import React, {useState} from "react";
 import ReactModal from 'react-modal';
 import ElementValue from "../Modal/ElementValue";
 import ElementLable from "./ElementLable";
-import ScienceIcon from '@mui/icons-material/Science';
+import data from "../PeriodicTableJSON.json";
 import '../App.css';
 
 ReactModal.setAppElement('#root');
-
-const colorMap = {
-    "noble gas": "#FFBC42",
-    "alkaline earth metal": "#EC674E",
-    "diatomic nonmetal": "#D81159",
-    "polyatomic nonmetal": "#FF4500",
-    "alkali metal": "#8F2D56",
-    "transition metal": "#191970",
-    "post-transition metal": "#218380",
-    "lanthanide": "#4AABAF",
-    "actinide": "#DC143C",
-    "metalloid": "#73D2DE",
-    "unknown, probably transition metal": "#191970",
-    "unknown, probably post-transition metal": "#218380",
-    "unknown, probably metalloid": "#73D2DE",
-    "unknown, but predicted to be an alkali metal": "#8F2D56",
-    "unknown, predicted to be noble gas": "#FFBC42"
-};  
 
 function Element(props){
     const [showElementModal, setShowElementModal] = useState(props.isOpen);
@@ -33,6 +15,33 @@ function Element(props){
         setShowElementModal(false);
         setElementData(null);
         props.handleClose();
+    };
+    
+    let prevElementName, nextElementName, prevAtomicNo, nextAtomicNo;
+    
+    function findElement(atomicNumber) {
+        return data.elements.filter((element) => element.number === atomicNumber)[0];
+    }
+
+    //prev element
+    if(elementData.number - 1 > 0){
+        prevAtomicNo = parseInt(elementData.number - 1);
+        // const prevElement = findElement(prevAtomicNo);
+        prevElementName = findElement(prevAtomicNo).name;
+    }
+
+    // next element
+    if(elementData.number + 1 < 120){
+        nextAtomicNo = parseInt(elementData.number + 1);
+        const nextElement = findElement(nextAtomicNo);
+        nextElementName = nextElement.name;
+    }
+
+    const changeElement = (atomicNum) => {
+        if(atomicNum > 0 && atomicNum < 120){
+            const clickedElement = findElement(atomicNum);
+            setElementData(clickedElement);
+        }
     }
 
     return(
@@ -65,7 +74,7 @@ function Element(props){
                                 </div>
 
                                 <div className="ele-det-header-top">
-                                    <div className="ele-det-header-element-tag" style={{ background: colorMap[elementData.category] }}>
+                                    <div className="ele-det-header-element-tag" style={{ background: props.colorMap[elementData.category] }}>
                                         <div className="flex-row">
                                             <div className="ele-det-header-atomic-no">
                                                 {elementData.number}
@@ -86,9 +95,17 @@ function Element(props){
                                 </div>
                             </header>
                             <footer className="ele-det-header-footer flex-row">
-                                <div className="ele-det-nav-btn ele-prev-btn">
+                                <div 
+                                    onClick={() => changeElement(prevAtomicNo)}
+                                    className="ele-det-nav-btn ele-prev-btn"
+                                >
+                                {prevAtomicNo} &#x2022; {prevElementName}
                                 </div>
-                                <div className="ele-det-nav-btn ele-next-btn">
+                                <div 
+                                    onClick={() => changeElement(nextAtomicNo)}
+                                    className="ele-det-nav-btn ele-next-btn"
+                                >
+                                {nextAtomicNo} &#x2022; {nextElementName}
                                 </div>
                             </footer>
                         </div>
