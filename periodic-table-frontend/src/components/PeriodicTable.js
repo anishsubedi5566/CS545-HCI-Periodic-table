@@ -25,36 +25,18 @@ const PeriodicTable = () => {
 
     const [showElementModal, setShowElementModal] = useState(false);
     const [elementData, setElementData] = useState(null);
-    const [prevElementData, setPrevElementData] = useState(null);
-    const [nextElementData, setNextElementData] = useState(null);
 
     const handleElementClick = (atomicNo) => {
         const selectedElement = data.elements.filter(
 			(element) => element.number === atomicNo
 		)[0];
-        if(atomicNo > 0){
-            const prevElement = data.elements.filter(
-                (element) => element.number === (atomicNo - 1)
-            )[0];
-            setPrevElementData(prevElement);
-        }
-        if(atomicNo < 120){
-            const nextElement = data.elements.filter(
-                (element) => element.number === (atomicNo + 1)
-            )[0];
-            setNextElementData(nextElement);
-        }
         setElementData(selectedElement);
         setShowElementModal(true);
-        console.log(prevElementData);
-        console.log(nextElementData);
     }
 
     const handleCloseElementModal = () => {
         setShowElementModal(false);
         setElementData(null);
-        setNextElementData(null);
-        setPrevElementData(null);
     }
 
     return(
@@ -65,6 +47,7 @@ const PeriodicTable = () => {
                 isOpen={showElementModal}
                 element={elementData}
                 handleClose={handleCloseElementModal}
+                colorMap={colorMap}
             />
         )}
 
