@@ -20,7 +20,7 @@ const Login = (props) => {
       AppUserLogin({ email, password }).then((res) => {
         if (res) {
           const id = toast.loading("Logging In...");
-
+          localStorage.setItem("user", JSON.stringify(res));
           setTimeout(() => {
             toast.update(id, {
               render: "Logged In",

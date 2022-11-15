@@ -5,7 +5,7 @@ import {
   Chart,
   BarSeries,
 } from "@devexpress/dx-react-chart-material-ui";
-import { Paper } from "@mui/material";
+import { Grid, Paper } from "@mui/material";
 import { AppUserGetDb } from "../Firebase";
 
 const Progress = () => {
@@ -34,12 +34,14 @@ const Progress = () => {
   } else {
     return (
       <Paper>
-        <Chart data={data}>
-          <ArgumentAxis />
-          <ValueAxis />
+        <Grid xs={6}>
+          <Chart data={data}>
+            <ArgumentAxis />
+            <ValueAxis />
 
-          <BarSeries valueField="value" argumentField="argument" />
-        </Chart>
+            <BarSeries valueField="value" argumentField="argument" />
+          </Chart>
+        </Grid>
       </Paper>
     );
   }

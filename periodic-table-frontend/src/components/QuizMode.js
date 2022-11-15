@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import Quiz from "./Quiz/Quiz";
 import Competitive from "./Quiz/Competitive";
-import { Box, Button } from "@mui/material";
+import { Box, Button, Modal } from "@mui/material";
 import "./Quiz/Quiz.css";
 import { RiMedalFill } from "react-icons/ri";
 import { HiAcademicCap } from "react-icons/hi";
 import Progress from "./Quiz/Progress";
 const QuizMode = () => {
   const [quizMode, setQuizMode] = useState("");
+  const handleClose = () => {
+    setQuizMode("");
+  };
   return (
     <div>
       {quizMode === "" && (
@@ -33,12 +36,23 @@ const QuizMode = () => {
           >
             Competitive
           </Button>
-          <Button onClick={() => setQuizMode("Progress")}>Progress</Button>
+          <Button onClick={() => setQuizMode("progress")}>Progress</Button>
         </Box>
       )}
       {quizMode === "quiz" && <Quiz />}
       {quizMode === "competitive" && <Competitive />}
-      {quizMode === "Progress" && <Progress />}
+
+      <Modal
+        open={quizMode === "progress"}
+        onClose={handleClose}
+        sx={{
+          top: "20%",
+          left: "20%",
+          width: "60%",
+        }}
+      >
+        <Progress />
+      </Modal>
     </div>
   );
 };
