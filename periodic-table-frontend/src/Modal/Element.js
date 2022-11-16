@@ -37,7 +37,7 @@ function Element(props){
         nextElementName = nextElement.name;
     }
 
-    const changeElement = (atomicNum) => {
+    const handleChangeElement = (atomicNum) => {
         if(atomicNum > 0 && atomicNum < 120){
             const clickedElement = findElement(atomicNum);
             setElementData(clickedElement);
@@ -96,13 +96,13 @@ function Element(props){
                             </header>
                             <footer className="ele-det-header-footer flex-row">
                                 <div 
-                                    onClick={() => changeElement(prevAtomicNo)}
+                                    onClick={() => handleChangeElement(prevAtomicNo)}
                                     className="ele-det-nav-btn ele-prev-btn"
                                 >
                                 {prevAtomicNo} &#x2022; {prevElementName}
                                 </div>
                                 <div 
-                                    onClick={() => changeElement(nextAtomicNo)}
+                                    onClick={() => handleChangeElement(nextAtomicNo)}
                                     className="ele-det-nav-btn ele-next-btn"
                                 >
                                 {nextAtomicNo} &#x2022; {nextElementName}
