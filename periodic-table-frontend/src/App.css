@@ -109,6 +109,39 @@
   padding-right: 1rem;
 }
 
+/* legend */
+.legend {
+  position: absolute;
+  top: 7%;
+  left: 230px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 12px;
+}
+
+.legend-item {
+  display: flex;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 4px;
+}
+
+.legend-color{
+  width: 25px;
+  height: 15px;
+  border-radius: 5px;
+  align-self: center;
+}
+
+.legend-name{
+  font-size: 10px;
+  letter-spacing: 1px;
+  padding-left: 10px;
+  text-transform: uppercase;
+  align-self: center;
+  white-space: nowrap;
+}
+
 /* Modal */
 
 /* Overlay */

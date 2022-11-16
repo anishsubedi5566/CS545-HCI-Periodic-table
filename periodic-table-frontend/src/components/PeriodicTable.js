@@ -1,18 +1,19 @@
 import React, {useState} from "react";
 import data from "../PeriodicTableJSON.json";
 import Element from "../Modal/Element";
+import Legend from "./Legend";
 import "../App.css";
 
 const colorMap = {
     "noble gas": "#FFBC42",
-    "alkaline earth metal": "#EC674E",
+    "alkaline earth metal": "#808000",
     "diatomic nonmetal": "#D81159",
     "polyatomic nonmetal": "#FF4500",
     "alkali metal": "#8F2D56",
     "transition metal": "#191970",
     "post-transition metal": "#218380",
-    "lanthanide": "#4AABAF",
-    "actinide": "#DC143C",
+    "lanthanide": "#9400D3",
+    "actinide": "#EE82EE",
     "metalloid": "#73D2DE",
     "unknown, probably transition metal": "#191970",
     "unknown, probably post-transition metal": "#218380",
@@ -50,7 +51,7 @@ const PeriodicTable = () => {
                 colorMap={colorMap}
             />
         )}
-
+        <Legend colorMap={colorMap} />
         {
             data.elements.map(element => 
                 <div
