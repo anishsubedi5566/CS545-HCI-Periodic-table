@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import data from "../PeriodicTableJSON.json";
 import Element from "../Modal/Element";
 import Legend from "./Legend";
+import { useDataLayerValue } from "./context-api/DataLayer";
 import "../App.css";
 
 const colorMap = {
@@ -26,6 +27,7 @@ const PeriodicTable = () => {
 
     const [showElementModal, setShowElementModal] = useState(false);
     const [elementData, setElementData] = useState(null);
+    const [{elementsOpacity}] = useDataLayerValue();
 
     const handleElementClick = (atomicNo) => {
         const selectedElement = data.elements.filter(
@@ -58,7 +60,10 @@ const PeriodicTable = () => {
                     onClick={() => handleElementClick(element.number)}
                     className="element"
                     key={element.name}
+                    data-name={element.name}
+					data-category={element.category}
                     style={{
+                        opacity: elementsOpacity,
                         gridColumn: element.xpos,
                         gridRow: element.ypos,
                         borderColor: colorMap[element.category],
