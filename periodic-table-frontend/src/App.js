@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import PeriodicTable from "./components/PeriodicTable";
 import Quiz from "./components/QuizMode";
 import "./App.css";
-import NavBar from "./components/NavBar";
+import NavBar from "./components/Navbar/NavBar";
 import Login from "./components/UserAuth";
 import { ToastContainer, toast } from "react-toastify";
 

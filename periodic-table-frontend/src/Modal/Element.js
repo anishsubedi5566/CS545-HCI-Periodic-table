@@ -37,11 +37,24 @@ function Element(props){
         nextElementName = nextElement.name;
     }
 
-    const changeElement = (atomicNum) => {
+    const handleChangeElement = (atomicNum) => {
         if(atomicNum > 0 && atomicNum < 120){
             const clickedElement = findElement(atomicNum);
             setElementData(clickedElement);
         }
+    }
+
+    const calculateTempEquivs = (value) => {
+		let kelvin = value
+		let temp = value
+		if (kelvin != null) {
+			// 1K − 273.15 = -272.1°C
+			kelvin = kelvin.toFixed(2)
+			const celsius = (kelvin - 273.15).toFixed(2)
+			const fahrenheit = ((celsius * 9/5) + 32).toFixed(2)
+			temp = `${kelvin}K = ${celsius}°C = ${fahrenheit}°F`
+		} 
+        return temp
     }
 
     return(
@@ -96,13 +109,13 @@ function Element(props){
                             </header>
                             <footer className="ele-det-header-footer flex-row">
                                 <div 
-                                    onClick={() => changeElement(prevAtomicNo)}
+                                    onClick={() => handleChangeElement(prevAtomicNo)}
                                     className="ele-det-nav-btn ele-prev-btn"
                                 >
                                 {prevAtomicNo} &#x2022; {prevElementName}
                                 </div>
                                 <div 
-                                    onClick={() => changeElement(nextAtomicNo)}
+                                    onClick={() => handleChangeElement(nextAtomicNo)}
                                     className="ele-det-nav-btn ele-next-btn"
                                 >
                                 {nextAtomicNo} &#x2022; {nextElementName}
@@ -114,7 +127,10 @@ function Element(props){
                         <ElementLable label="Overview" />
                         <ElementValue label="Name" value={elementData.name} />
                         <ElementValue label="Summary: " value={elementData.summary} />
-                        <ElementValue label="Discovered by: " value={elementData.discovered_by} />
+                        <ElementValue label="Discovered by: " value={elementData.discovered_by ? elementData.discovered_by : '--'} />
+                        <ElementValue label="Named by: " value={elementData.named_by ? elementData.named_by : '--'} />
+                        <ElementValue label="Appearance" value={elementData.appearance ? elementData.appearance : '--'} />
+                        <ElementValue label="Electron Shells" value={elementData.shells ? elementData.shells : '--'} />
 
                         <ElementLable label="Properties" />
                         <ElementValue label="Atomic Number: " value={elementData.number} />
@@ -122,6 +138,8 @@ function Element(props){
                         <ElementValue label="Density: " value={`${elementData.density} (g/cm³)`} />
                         <ElementValue label="Phase: " value={elementData.phase} />
                         <ElementValue label="Molar Heat: " value={`${elementData.molar_heat} J/(mol·K)`} />
+                        <ElementValue label="Melting Point: " value={calculateTempEquivs(elementData.melt)} />
+						<ElementValue label="Boiling Point: " value={calculateTempEquivs(elementData.boil)} />
                         <ElementValue label="Group: " value={elementData.xpos} />
                         <ElementValue label="Period: " value={elementData.ypos} />
                         <ElementValue label="Emmision spectrum: " value={elementData.spectral_img ? elementData.spectral_img : 'N/A'} />

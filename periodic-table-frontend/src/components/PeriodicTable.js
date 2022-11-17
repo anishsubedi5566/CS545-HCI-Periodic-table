@@ -1,18 +1,20 @@
 import React, {useState} from "react";
 import data from "../PeriodicTableJSON.json";
 import Element from "../Modal/Element";
+import Legend from "./Legend";
+import { useDataLayerValue } from "./context-api/DataLayer";
 import "../App.css";
 
 const colorMap = {
     "noble gas": "#FFBC42",
-    "alkaline earth metal": "#EC674E",
+    "alkaline earth metal": "#808000",
     "diatomic nonmetal": "#D81159",
     "polyatomic nonmetal": "#FF4500",
     "alkali metal": "#8F2D56",
     "transition metal": "#191970",
     "post-transition metal": "#218380",
-    "lanthanide": "#4AABAF",
-    "actinide": "#DC143C",
+    "lanthanide": "#9400D3",
+    "actinide": "#EE82EE",
     "metalloid": "#73D2DE",
     "unknown, probably transition metal": "#191970",
     "unknown, probably post-transition metal": "#218380",
@@ -25,6 +27,7 @@ const PeriodicTable = () => {
 
     const [showElementModal, setShowElementModal] = useState(false);
     const [elementData, setElementData] = useState(null);
+    const [{elementsOpacity}] = useDataLayerValue();
 
     const handleElementClick = (atomicNo) => {
         const selectedElement = data.elements.filter(
@@ -50,14 +53,17 @@ const PeriodicTable = () => {
                 colorMap={colorMap}
             />
         )}
-
+        <Legend colorMap={colorMap} />
         {
             data.elements.map(element => 
                 <div
                     onClick={() => handleElementClick(element.number)}
                     className="element"
                     key={element.name}
+                    data-name={element.name}
+					data-category={element.category}
                     style={{
+                        opacity: elementsOpacity,
                         gridColumn: element.xpos,
                         gridRow: element.ypos,
                         borderColor: colorMap[element.category],
@@ -69,8 +75,10 @@ const PeriodicTable = () => {
                 </div>
             )
         }
-            <div className="Lanthanide-series" 
+            <div className="Lanthanide-series"
+                data-category= "lanthanide" 
                 style={{
+                    opacity: elementsOpacity,
                     gridColumn: 3,
                     gridRow: 6,
                 }}>
@@ -78,7 +86,9 @@ const PeriodicTable = () => {
                 <p>La-Lu</p>
             </div>
             <div className="Actinide-series"
+                data-category= "actinide"
                 style={{
+                    opacity: elementsOpacity,
                     gridColumn: 3,
                     gridRow: 7,
                 }}>
