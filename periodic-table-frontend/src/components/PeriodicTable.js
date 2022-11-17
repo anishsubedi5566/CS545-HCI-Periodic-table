@@ -75,8 +75,10 @@ const PeriodicTable = () => {
                 </div>
             )
         }
-            <div className="Lanthanide-series" 
+            <div className="Lanthanide-series"
+                data-category= "lanthanide" 
                 style={{
+                    opacity: elementsOpacity,
                     gridColumn: 3,
                     gridRow: 6,
                 }}>
@@ -84,7 +86,9 @@ const PeriodicTable = () => {
                 <p>La-Lu</p>
             </div>
             <div className="Actinide-series"
+                data-category= "actinide"
                 style={{
+                    opacity: elementsOpacity,
                     gridColumn: 3,
                     gridRow: 7,
                 }}>
