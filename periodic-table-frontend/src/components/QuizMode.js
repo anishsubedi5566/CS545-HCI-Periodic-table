@@ -15,27 +15,27 @@ const QuizMode = () => {
     <div>
       {quizMode === "" && (
         <Box className="quiz-options">
-          <h2>Choose a quiz mode:</h2>
-
-          <p>Solo mode: You will be quizzed on the elements and level up.</p>
+          <h3>Quiz on the Periodic Table of Elements</h3>
+          <h4>Information</h4>
+          <p className="information">
+            This quiz is designed to test your knowledge of the periodic table
+            of elements. You will be given 10 questions and you will have 30
+            seconds to answer each question. You will be given 4 options to
+            choose from. You will be awarded 1 point for each correct answer.
+            There is no negative marking.
+          </p>
           <Button
             variant="outlined"
             startIcon={<HiAcademicCap />}
             onClick={() => setQuizMode("quiz")}
           >
-            Solo
+            Start Quiz
           </Button>
-          <p>
-            Competitive mode: You will be quizzed on the elements and compete
-            with other players.
+          <h4>Progress</h4>
+          <p className="information">
+            Check the progress you made so far in the quiz.
           </p>
-          <Button
-            variant="outlined"
-            startIcon={<RiMedalFill />}
-            onClick={() => setQuizMode("competitive")}
-          >
-            Competitive
-          </Button>
+
           <Button onClick={() => setQuizMode("progress")}>Progress</Button>
         </Box>
       )}
