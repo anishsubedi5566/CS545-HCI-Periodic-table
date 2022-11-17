@@ -3,10 +3,14 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { DataLayer } from './components/context-api/DataLayer';
+import reducer, { initialState } from './components/context-api/reducer'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <App />
+    <DataLayer initialState={initialState} reducer={reducer}>
+        <App />
+    </DataLayer>,
 );
 
 // If you want to start measuring performance in your app, pass a function
