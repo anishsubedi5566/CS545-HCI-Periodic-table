@@ -124,39 +124,47 @@ const Quiz = () => {
         </div>
       ) : (
         <Grid className="container">
-          <div>
-            <Card className="question-section">
-              <div className="question-count">
-                <span>Question {currentQuestion + 1}</span>/{questions.length}
-              </div>
+          <div className="quiz-container">
+            <div className="question-count">
+              <span>Question {currentQuestion + 1}</span>/{questions.length}
+            </div>
+            <Card
+              className="question-section"
+              sx={{
+                backgroundColor: "#f8e1d8",
+                boxShadow: "None",
+                borderRadius: "1rem",
+              }}
+            >
               <div className="question-text">
                 {questions[currentQuestion].questionText}
               </div>
-            </Card>
-            <Card className="answer-section">
-              {questions[currentQuestion].answerOptions.map(
-                (answerOption, idx) => (
-                  <button
-                    key={idx}
-                    className={
-                      isAnswered
-                        ? answerOption.isCorrect
-                          ? "answer-button-correct"
-                          : "answer-button-incorrect"
-                        : "answer-button"
-                    }
-                    onClick={() =>
-                      handleAnswerOptionClick(
-                        answerOption.isCorrect,
-                        answerOption.answerText
-                      )
-                    }
-                    disabled={isDisabled}
-                  >
-                    {answerOption.answerText}
-                  </button>
-                )
-              )}
+              <br></br>
+              <div className="answer-section">
+                {questions[currentQuestion].answerOptions.map(
+                  (answerOption, idx) => (
+                    <button
+                      key={idx}
+                      className={
+                        isAnswered
+                          ? answerOption.isCorrect
+                            ? "answer-button-correct"
+                            : "answer-button-incorrect"
+                          : "answer-button"
+                      }
+                      onClick={() =>
+                        handleAnswerOptionClick(
+                          answerOption.isCorrect,
+                          answerOption.answerText
+                        )
+                      }
+                      disabled={isDisabled}
+                    >
+                      {answerOption.answerText}
+                    </button>
+                  )
+                )}
+              </div>
             </Card>
           </div>
         </Grid>

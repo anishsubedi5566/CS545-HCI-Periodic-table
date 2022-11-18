@@ -34,7 +34,7 @@ const Progress = () => {
   } else {
     return (
       <Paper>
-        <Grid xs={6}>
+        <Grid xs={12} md={12}>
           <Chart data={data}>
             <ArgumentAxis />
             <ValueAxis />
