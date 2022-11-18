@@ -9,6 +9,7 @@ import {
 } from "firebase/auth";
 import {
   addDoc,
+  arrayUnion,
   collection,
   getDocs,
   getFirestore,
@@ -31,33 +32,46 @@ function Auth() {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+async function AppUserGetDb() {
+  try {
+    const querySnapshot = await getDocs(collection(db, "users"));
+    //current user
+    let scores = [];
+    querySnapshot.forEach((doc) => {
+      if (doc.data().uid === getAuth().currentUser.uid) {
+        scores = doc.data().score;
+      }
+    });
+    console.log("scores", scores);
+    return scores;
+  } catch (e) {
+    console.log(e);
+    return e;
+  }
+}
+
 async function AppUserDbUpdate(score) {
-  const querySnapshot = await getDocs(collection(db, "users"));
-  //current user
-  let user = getAuth().currentUser;
-  querySnapshot.forEach((doc) => {
-    if (doc.data().id === user.uid) {
-      updateDoc(doc.ref, {
-        score: score,
-      });
-    }
-  });
+  try {
+    const querySnapshot = await getDocs(collection(db, "users"));
+    //current user
+    querySnapshot.forEach((doc) => {
+      if (doc.data().uid === getAuth().currentUser.uid) {
+        updateDoc(doc.ref, {
+          score: arrayUnion(score),
+        });
+      }
+    });
+  } catch (e) {
+    console.error("Error adding document: ", e);
+  }
 }
 
 async function AppUserDb(username, score, uid) {
   try {
-    const user = await addDoc(collection(db, "users"), {
+    const docRef = await addDoc(collection(db, "users"), {
       username: username,
-      score: score,
+      score: [],
       uid: uid,
-    });
-    const querySnapshot = await getDocs(collection(db, "users"));
-    querySnapshot.forEach((doc) => {
-      console.log(
-        `${doc.id} => ${doc.data().username} => ${doc.data().score} => ${
-          doc.data().uid
-        }`
-      );
     });
 
     return true;
@@ -120,4 +134,11 @@ async function AppUserLogin(data) {
     return error;
   }
 }
-export { AppUserCreation, AppUserLogin, AppUserLogout, Auth };
+export {
+  AppUserCreation,
+  AppUserLogin,
+  AppUserLogout,
+  Auth,
+  AppUserDbUpdate,
+  AppUserGetDb,
+};

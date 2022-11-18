@@ -6,8 +6,10 @@ import "./App.css";
 import NavBar from "./components/Navbar/NavBar";
 import Login from "./components/UserAuth";
 import { ToastContainer, toast } from "react-toastify";
-let local = localStorage.getItem("user");
+
 function App() {
+  let local = localStorage.getItem("user");
+  console.log("local in appjs", local);
   return (
     <BrowserRouter>
       <div className="App">
@@ -19,7 +21,7 @@ function App() {
             <Route exact path="/" element={<PeriodicTable />} />
             <Route
               path="/quiz"
-              element={!local ? <Quiz /> : <Navigate replace to={"/"} />}
+              element={local ? <Quiz /> : <Navigate replace to={"/"} />}
             />
             <Route
               path="/login"

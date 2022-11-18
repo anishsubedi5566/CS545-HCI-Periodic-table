@@ -4,6 +4,92 @@
   height: 100%;
 }
 
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40%;
+  height: 50%;
+  background-color: #fff;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Link CSS */
+
+.link {
+  background-color: cornsilk;
+  border-radius: 10px;
+  padding: 8px;
+  margin: 10px;
+  text-decoration: none;
+  color: coral;
+}
+.link:hover {
+  background-color: coral;
+  color: cornsilk;
+}
+
+.link-logout {
+  background-color: tomato;
+  color: rgb(246, 246, 246);
+
+  border-radius: 10px;
+  padding: 8px;
+  margin: 10px;
+  text-decoration: none;
+}
+.link-logout:hover {
+  background-color: rgb(246, 246, 246);
+  color: tomato;
+}
+
+.link-login {
+  background-color: #eef0ff;
+  color: #2c303d;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
+  text-decoration: none;
+}
+
+.link-login:hover {
+  background-color: #2c303d;
+  color: #eef0ff;
+}
+
+/* Link CSS */
+
+/* Modal CSS */
+
+.modal-title {
+  font-size: 1rem;
+  font-weight: bold;
+  align-self: flex-start;
+  margin-left: 1rem;
+}
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.modal-footer {
+  width: 100%;
+  height: 10%;
+  display: flex;
+  justify-content: center;
+
+  align-items: baseline;
+}
+
 .header {
   justify-content: space-between;
 }
@@ -86,7 +172,7 @@
 }
 
 .navbar-item {
-  align-self: center;
+  align-self: left;
   margin: auto;
 }
 
@@ -96,6 +182,8 @@
   text-transform: uppercase;
   color: black;
   text-decoration: none;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 .home-link {
@@ -126,26 +214,26 @@
   padding: 4px;
 }
 
-.legend-item:hover{
+.legend-item:hover {
   background: #888;
   box-shadow: 0px 5px 22px rgba(0, 0, 0, 0.3);
   transform: scale(1.05, 1.05);
 }
 
-.legend-item-selected{
+.legend-item-selected {
   background: #888;
   box-shadow: 0px 5px 22px rgba(0, 0, 0, 0.3);
   transform: scale(1.05, 1.05);
 }
 
-.legend-color{
+.legend-color {
   width: 25px;
   height: 15px;
   border-radius: 5px;
   align-self: center;
 }
 
-.legend-name{
+.legend-name {
   font-size: 10px;
   letter-spacing: 1px;
   padding-left: 10px;

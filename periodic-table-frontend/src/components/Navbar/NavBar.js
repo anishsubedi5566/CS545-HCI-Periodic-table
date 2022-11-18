@@ -3,16 +3,17 @@ import { Link } from "react-router-dom";
 import "../../App.css";
 import { onAuthStateChanged } from "firebase/auth";
 import { Auth, AppUserLogout } from "../Firebase";
-import { Button } from "@mui/material";
+import { Button, Modal } from "@mui/material";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import Avatar from "react-avatar";
 const auth = Auth();
 
 const NavBar = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState(null);
-
+  const [open, setOpen] = useState(false);
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -33,11 +34,14 @@ const NavBar = () => {
     localStorage.removeItem("user");
     toast.info("Logged Out");
     navigate("/");
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
   };
 
   return (
     <div className="navbar">
-      <div className="navbar-item navbar-name">
+      <div className="navbar-name">
         <Link className="home-link" to="/">
           Periodic Table
         </Link>
@@ -45,21 +49,55 @@ const NavBar = () => {
 
       {user ? (
         <div className="nav-right">
-          <Link className="nav-item" to="/quiz">
-            <p> {user.displayName}</p>
-          </Link>
-          <Button
-            variant="contained"
-            color="error"
-            onClick={handleLogout}
-            className="logout-button"
-          >
-            Logout
-          </Button>
+          <Avatar
+            name={user.displayName}
+            size="40"
+            round={true}
+            onClick={() => setOpen(true)}
+          />
+
+          <div>
+            <Modal open={open === true} onClose={() => setOpen(false)}>
+              <div className="modal">
+                <div className="modal-title">
+                  <h1>Welcome, {user.displayName} </h1>
+                </div>
+                <div className="modal-body">
+                  <h4>
+                    <Link
+                      to="/quiz"
+                      className="link"
+                      onClick={() => setOpen(false)}
+                    >
+                      Go to Quiz
+                    </Link>
+                  </h4>
+                  <h4>
+                    <Link
+                      to="/profile"
+                      className="link"
+                      onClick={() => setOpen(false)}
+                    >
+                      Change Password
+                    </Link>
+                  </h4>
+                  <h4>
+                    <Link onClick={handleLogout} className="link-logout">
+                      Logout
+                    </Link>
+                  </h4>
+                </div>
+              </div>
+            </Modal>
+          </div>
         </div>
       ) : (
         <div className="nav-right">
-          <Link to="/login">Login</Link>
+          <h4>
+            <Link to="/login" className="link-login">
+              Login
+            </Link>
+          </h4>
         </div>
       )}
     </div>
