@@ -41,6 +41,9 @@ const NavBar = () => {
 
   return (
     <div className="navbar">
+      <div>
+        <div className="middle"></div>
+      </div>
       <div className="navbar-name">
         <Link className="home-link" to="/">
           Periodic Table
