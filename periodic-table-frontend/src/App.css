@@ -486,3 +486,14 @@
   width: 100%;
   height: 20px;
 }
+
+.add-fav-btn {
+  height: 50px;
+  background: #1c1f26;
+  border: none;
+  color: #fff;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+}
