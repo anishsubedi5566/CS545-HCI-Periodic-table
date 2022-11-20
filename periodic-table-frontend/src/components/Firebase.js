@@ -57,6 +57,23 @@ async function AppUserGetDb() {
   }
 }
 
+async function AppUserFavUpdate(fav) {
+  try {
+    const querySnapshot = await getDocs(collection(db, "users"));
+    //current user
+    querySnapshot.forEach((doc) => {
+      if (doc.data().uid === getAuth().currentUser.uid) {
+        updateDoc(doc.ref, {
+          favourites: fav,
+        });
+      }
+    });
+  } catch (e) {
+    console.log(e);
+    return e;
+  }
+}
+
 async function AppUserDbUpdate(score) {
   try {
     const querySnapshot = await getDocs(collection(db, "users"));
@@ -169,4 +186,5 @@ export {
   AppUserDbUpdate,
   AppUserGetDb,
   AppUserFavourites,
+  AppUserFavUpdate,
 };
