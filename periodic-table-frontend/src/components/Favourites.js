@@ -21,6 +21,8 @@ import { margin } from "@mui/system";
 import { IoTrashBin } from "react-icons/io5";
 import ElementValue from "../Modal/ElementValue";
 import ElementLable from "../Modal/ElementLable";
+import { toast, ToastContainer } from "react-toastify";
+import { Navigate } from "react-router-dom";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -58,10 +60,25 @@ const Favourites = ({ user }) => {
     }
   };
 
-  const handleDelete = (key) => {
-    const newFavourites = favourites.filter((fav) => fav.number !== key);
-    setFavourites(newFavourites);
-    AppUserFavUpdate(newFavourites);
+  const handleDelete = (key, name) => {
+    // Confirmation alert
+    if (window.confirm("Are you sure you want to delete this element?")) {
+      // Delete element
+
+      const newFavourites = favourites.filter((fav) => fav.number !== key);
+      setFavourites(newFavourites);
+      AppUserFavUpdate(newFavourites);
+      toast.info(`${name} removed from favorites`, {
+        position: "top-right",
+        autoClose: 1500,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    }
   };
 
   useEffect(() => {
@@ -72,9 +89,37 @@ const Favourites = ({ user }) => {
   }, []);
   console.log("d", favourites);
 
+  if (!user) {
+    return <Navigate to="/" replace />;
+  }
   if (loading) {
     return <div>Loading...</div>;
   } else {
+    if (favourites.length === 0) {
+      return (
+        <div style={{ alignItems: "center" }}>
+          <Card
+            sx={{
+              maxWidth: 500,
+              height: 300,
+              textAlign: "center",
+              marginTop: "20vh",
+            }}
+          >
+            <CardHeader subheader="Favourites" />
+            <CardContent>
+              <Typography variant="body2" color="text.secondary">
+                You have no favourites yet.
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                Start by clicking "Mark as favourite" on any element on the
+                Periodic Table.
+              </Typography>
+            </CardContent>
+          </Card>
+        </div>
+      );
+    }
     return (
       <div>
         <Grid container spacing={0} justifyContent={"center"}>
@@ -102,7 +147,9 @@ const Favourites = ({ user }) => {
                       <IoTrashBin
                         size={20}
                         opacity={0.8}
-                        onClick={() => handleDelete(favourite.number)}
+                        onClick={() =>
+                          handleDelete(favourite.number, favourite.name)
+                        }
                       ></IoTrashBin>
                     </span>
                   </Tooltip>
@@ -205,6 +252,18 @@ const Favourites = ({ user }) => {
             </Card>
           ))}
         </Grid>
+        <ToastContainer
+          position="top-right"
+          autoClose={1000}
+          hideProgressBar
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+        />
       </div>
     );
   }

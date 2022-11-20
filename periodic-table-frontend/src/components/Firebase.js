@@ -103,6 +103,7 @@ async function AppUserFavourites(favourite) {
         });
       }
     });
+    return true;
   } catch (e) {
     console.error("Error adding document: ", e);
   }

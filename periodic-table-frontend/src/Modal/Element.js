@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ReactModal from "react-modal";
 import ElementValue from "../Modal/ElementValue";
 import ElementLable from "./ElementLable";
 import data from "../PeriodicTableJSON.json";
 import "../App.css";
 import { Button } from "@mui/material";
-import { AppUserFavourites } from "../components/Firebase";
+import { AppUserFavourites, AppUserGetDb } from "../components/Firebase";
 import { style } from "@mui/system";
+import { toast } from "react-toastify";
 
 ReactModal.setAppElement("#root");
 
@@ -14,6 +15,7 @@ function Element(props) {
   const [showElementModal, setShowElementModal] = useState(props.isOpen);
   const [elementData, setElementData] = useState(props.element);
   const [favHover, setFavHover] = useState(false);
+  const [fav, setFav] = useState([]);
 
   const handleCloseModal = () => {
     setShowElementModal(false);
@@ -63,9 +65,27 @@ function Element(props) {
     return temp;
   };
 
+  useEffect(() => {
+    AppUserGetDb().then((data) => {
+      setFav(data["favourites"]);
+    });
+  }, []);
+
   const handleAdd = (elementData) => {
     console.log("add element", elementData);
-    AppUserFavourites(elementData);
+    console.log("favourites in element", fav);
+    if (fav.some((element) => element.number === elementData.number)) {
+      toast.error(`${elementData.name} already in favourites`);
+    } else {
+      AppUserFavourites(elementData).then((res) => {
+        if (res === true) {
+          toast.success(`${elementData.name} added in favourites`);
+          fav.push(elementData);
+        } else {
+          toast.error("Element already exists in favourites");
+        }
+      });
+    }
   };
 
   return (
