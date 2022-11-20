@@ -40,14 +40,17 @@ async function AppUserGetDb() {
     //current user
     let scores = [];
     let moment = [];
+    let favourites = [];
     querySnapshot.forEach((doc) => {
       if (doc.data().uid === getAuth().currentUser.uid) {
         scores = doc.data().score;
         moment = doc.data().moment;
+        favourites = doc.data().favourites;
       }
     });
     console.log("scores", scores);
-    return { scores, moment };
+    console.log("fav", favourites);
+    return { scores, moment, favourites };
   } catch (e) {
     console.log(e);
     return e;
@@ -72,12 +75,29 @@ async function AppUserDbUpdate(score) {
   }
 }
 
+async function AppUserFavourites(favourite) {
+  try {
+    const querySnapshot = await getDocs(collection(db, "users"));
+    //current user
+    querySnapshot.forEach((doc) => {
+      if (doc.data().uid === getAuth().currentUser.uid) {
+        updateDoc(doc.ref, {
+          favourites: arrayUnion(favourite),
+        });
+      }
+    });
+  } catch (e) {
+    console.error("Error adding document: ", e);
+  }
+}
+
 async function AppUserDb(username, score, uid) {
   try {
     const docRef = await addDoc(collection(db, "users"), {
       username: username,
       score: [],
       moment: [],
+      favourites: [],
       uid: uid,
     });
 
@@ -148,4 +168,5 @@ export {
   Auth,
   AppUserDbUpdate,
   AppUserGetDb,
+  AppUserFavourites,
 };
