@@ -5,11 +5,16 @@ import "./Quiz/Quiz.css";
 import { RiMedalFill } from "react-icons/ri";
 import { HiAcademicCap } from "react-icons/hi";
 import Progress from "./Quiz/Progress";
-const QuizMode = () => {
+import { Navigate } from "react-router-dom";
+const QuizMode = ({ user }) => {
   const [quizMode, setQuizMode] = useState("");
   const handleClose = () => {
     setQuizMode("");
   };
+
+  if (user === null) {
+    return <Navigate to="/login" replace />;
+  }
   let inst = [
     "This quiz is designed to test your knowledge of the periodic table of elements.",
     "The quiz will consist of 10 questions, each with 4 possible answers.",
