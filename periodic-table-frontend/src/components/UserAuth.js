@@ -3,7 +3,7 @@ import { Container } from "@mui/system";
 import React, { useState } from "react";
 import { StyledEngineProvider } from "@mui/system";
 import "./UserAuth.css";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AppUserCreation, AppUserLogin } from "./Firebase";
@@ -18,7 +18,7 @@ const Login = (props) => {
       toast.error("Please fill all the fields");
     } else {
       AppUserLogin({ email, password }).then((res) => {
-        if (res) {
+        if (res === true) {
           const id = toast.loading("Logging In...");
           localStorage.setItem("user", JSON.stringify(res));
           setTimeout(() => {
@@ -181,9 +181,12 @@ const SignUp = (props) => {
     </div>
   );
 };
-const UserAuth = () => {
+const UserAuth = ({ user }) => {
   const [switchForm, setSwitchForm] = useState(true);
 
+  if (user) {
+    return <Navigate to="/" replace />;
+  }
   return (
     <div>
       <StyledEngineProvider injectFirst>

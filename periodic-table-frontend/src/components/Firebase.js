@@ -16,6 +16,7 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import firebaseui, { auth } from "firebaseui";
+
 const firebaseConfig = {
   apiKey: "AIzaSyAVhf2zRYcIrOMVZSxhus70-IgLLSh_s2c",
   authDomain: "periodic-table-b89e9.firebaseapp.com",
@@ -28,6 +29,7 @@ const firebaseConfig = {
 function Auth() {
   return getAuth();
 }
+const moment = require("moment");
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
@@ -37,13 +39,18 @@ async function AppUserGetDb() {
     const querySnapshot = await getDocs(collection(db, "users"));
     //current user
     let scores = [];
+    let moment = [];
+    let favourites = [];
     querySnapshot.forEach((doc) => {
       if (doc.data().uid === getAuth().currentUser.uid) {
         scores = doc.data().score;
+        moment = doc.data().moment;
+        favourites = doc.data().favourites;
       }
     });
     console.log("scores", scores);
-    return scores;
+    console.log("fav", favourites);
+    return { scores, moment, favourites };
   } catch (e) {
     console.log(e);
     return e;
@@ -54,10 +61,28 @@ async function AppUserDbUpdate(score) {
   try {
     const querySnapshot = await getDocs(collection(db, "users"));
     //current user
+    console.log("score updating", score);
     querySnapshot.forEach((doc) => {
       if (doc.data().uid === getAuth().currentUser.uid) {
         updateDoc(doc.ref, {
           score: arrayUnion(score),
+          moment: arrayUnion(moment().format("MMMM Do YYYY, h:mm:ss a")),
+        });
+      }
+    });
+  } catch (e) {
+    console.error("Error adding document: ", e);
+  }
+}
+
+async function AppUserFavourites(favourite) {
+  try {
+    const querySnapshot = await getDocs(collection(db, "users"));
+    //current user
+    querySnapshot.forEach((doc) => {
+      if (doc.data().uid === getAuth().currentUser.uid) {
+        updateDoc(doc.ref, {
+          favourites: arrayUnion(favourite),
         });
       }
     });
@@ -71,6 +96,8 @@ async function AppUserDb(username, score, uid) {
     const docRef = await addDoc(collection(db, "users"), {
       username: username,
       score: [],
+      moment: [],
+      favourites: [],
       uid: uid,
     });
 
@@ -141,4 +168,5 @@ export {
   Auth,
   AppUserDbUpdate,
   AppUserGetDb,
+  AppUserFavourites,
 };

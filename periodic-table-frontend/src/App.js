@@ -6,6 +6,7 @@ import "./App.css";
 import NavBar from "./components/Navbar/NavBar";
 import Login from "./components/UserAuth";
 import { ToastContainer, toast } from "react-toastify";
+import Favourites from "./components/Favourites";
 
 function App() {
   let local = localStorage.getItem("user");
@@ -19,14 +20,9 @@ function App() {
         <div className="App-Body">
           <Routes>
             <Route exact path="/" element={<PeriodicTable />} />
-            <Route
-              path="/quiz"
-              element={local ? <Quiz /> : <Navigate replace to={"/"} />}
-            />
-            <Route
-              path="/login"
-              element={!local ? <Login /> : <Navigate replace to={"/"} />}
-            />
+            <Route path="/quiz" element={<Quiz user={local} />} />
+            <Route path="/login" element={<Login user={local} />} />
+            <Route path="/favourites" element={<Favourites user={local} />} />
             <Route path="*" element={<PeriodicTable />} />
           </Routes>
         </div>

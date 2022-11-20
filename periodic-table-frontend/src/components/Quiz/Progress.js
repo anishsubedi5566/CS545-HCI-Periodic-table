@@ -7,19 +7,19 @@ import {
 } from "@devexpress/dx-react-chart-material-ui";
 import { Grid, Paper } from "@mui/material";
 import { AppUserGetDb } from "../Firebase";
-
+const moment = require("moment");
 const Progress = () => {
   let d = [];
   const [data, setData] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
   useEffect(() => {
     AppUserGetDb().then((data) => {
-      for (let i = 0; i < data.length; i++) {
+      for (let i = 0; i < data["scores"].length; i++) {
         d = [
           ...d,
           {
-            argument: String(i),
-            value: data[i],
+            argument: data["moment"][i],
+            value: data["scores"][i],
           },
         ];
       }

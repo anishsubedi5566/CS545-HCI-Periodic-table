@@ -74,11 +74,11 @@ const NavBar = () => {
                   </h4>
                   <h4>
                     <Link
-                      to="/profile"
+                      to="/favourites"
                       className="link"
                       onClick={() => setOpen(false)}
                     >
-                      Change Password
+                      Check Favourites
                     </Link>
                   </h4>
                   <h4>
