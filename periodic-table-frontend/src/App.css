@@ -196,7 +196,8 @@
   padding-right: 1rem;
 }
 
-/* legend */
+/* legend
+ */
 .legend {
   position: absolute;
   top: 7%;
@@ -214,13 +215,13 @@
 }
 
 .legend-item:hover {
-  background: #888;
+  background: rgb(195, 195, 195);
   box-shadow: 0px 5px 22px rgba(0, 0, 0, 0.3);
   transform: scale(1.05, 1.05);
 }
 
 .legend-item-selected {
-  background: #888;
+  background: rgb(195, 195, 195);
   box-shadow: 0px 5px 22px rgba(0, 0, 0, 0.3);
   transform: scale(1.05, 1.05);
 }
@@ -443,6 +444,7 @@
 
 .ele-det-info-box:last-child {
   border-bottom: none;
+  border-radius: 0 0 20px 20px;
 }
 
 .ele-det-info-box label {
@@ -467,7 +469,9 @@
   padding: 14px 15px;
   background: #333;
 }
-
+.ele-det-group-label:first-child {
+  border-radius: 20px 20px 0 0;
+}
 .ele-det-group-label img {
   width: 20px;
   object-fit: contain;
