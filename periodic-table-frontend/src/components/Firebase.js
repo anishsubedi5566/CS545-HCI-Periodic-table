@@ -16,6 +16,7 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import firebaseui, { auth } from "firebaseui";
+
 const firebaseConfig = {
   apiKey: "AIzaSyAVhf2zRYcIrOMVZSxhus70-IgLLSh_s2c",
   authDomain: "periodic-table-b89e9.firebaseapp.com",
@@ -28,6 +29,7 @@ const firebaseConfig = {
 function Auth() {
   return getAuth();
 }
+const moment = require("moment");
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
@@ -37,13 +39,15 @@ async function AppUserGetDb() {
     const querySnapshot = await getDocs(collection(db, "users"));
     //current user
     let scores = [];
+    let moment = [];
     querySnapshot.forEach((doc) => {
       if (doc.data().uid === getAuth().currentUser.uid) {
         scores = doc.data().score;
+        moment = doc.data().moment;
       }
     });
     console.log("scores", scores);
-    return scores;
+    return { scores, moment };
   } catch (e) {
     console.log(e);
     return e;
@@ -54,10 +58,12 @@ async function AppUserDbUpdate(score) {
   try {
     const querySnapshot = await getDocs(collection(db, "users"));
     //current user
+    console.log("score updating", score);
     querySnapshot.forEach((doc) => {
       if (doc.data().uid === getAuth().currentUser.uid) {
         updateDoc(doc.ref, {
           score: arrayUnion(score),
+          moment: arrayUnion(moment().format("MMMM Do YYYY, h:mm:ss a")),
         });
       }
     });
@@ -71,6 +77,7 @@ async function AppUserDb(username, score, uid) {
     const docRef = await addDoc(collection(db, "users"), {
       username: username,
       score: [],
+      moment: [],
       uid: uid,
     });
 

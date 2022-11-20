@@ -18,7 +18,7 @@ const Login = (props) => {
       toast.error("Please fill all the fields");
     } else {
       AppUserLogin({ email, password }).then((res) => {
-        if (res) {
+        if (res === true) {
           const id = toast.loading("Logging In...");
           localStorage.setItem("user", JSON.stringify(res));
           setTimeout(() => {

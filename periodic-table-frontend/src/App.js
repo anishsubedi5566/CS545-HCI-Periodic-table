@@ -19,10 +19,7 @@ function App() {
         <div className="App-Body">
           <Routes>
             <Route exact path="/" element={<PeriodicTable />} />
-            <Route
-              path="/quiz"
-              element={local ? <Quiz /> : <Navigate replace to={"/"} />}
-            />
+            <Route path="/quiz" element={<Quiz />} />
             <Route
               path="/login"
               element={!local ? <Login /> : <Navigate replace to={"/"} />}

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Quiz from "./Quiz/Quiz";
-import Competitive from "./Quiz/Competitive";
 import { Box, Button, Grid, Modal } from "@mui/material";
 import "./Quiz/Quiz.css";
 import { RiMedalFill } from "react-icons/ri";
@@ -61,7 +60,6 @@ const QuizMode = () => {
         </div>
       )}
       {quizMode === "quiz" && <Quiz />}
-      {quizMode === "competitive" && <Competitive />}
 
       <Modal
         open={quizMode === "progress"}
