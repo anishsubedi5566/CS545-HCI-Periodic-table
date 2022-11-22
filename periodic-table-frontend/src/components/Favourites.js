@@ -145,6 +145,7 @@ const Favourites = ({ user }) => {
                   >
                     <span>
                       <IoTrashBin
+                        style={{ cursor: "pointer" }}
                         size={20}
                         opacity={0.8}
                         onClick={() =>
@@ -196,7 +197,7 @@ const Favourites = ({ user }) => {
                   }
                   placement="top"
                 >
-                  <p>Bohr's Model</p>
+                  <p style={{ cursor: "alias" }}>Bohr's Model</p>
                 </Tooltip>
 
                 <ExpandMore

@@ -96,12 +96,20 @@ const Quiz = () => {
                   padding: "1rem",
                   margin: "1rem",
                   borderRadius: "1rem",
-                  boxShadow: "0 0 10px rgba(0,0,0,0.1)",
-                  backgroundColor: "#fff",
+                  boxShadow: "none",
+                  color: item[2] === "Correct!" ? "#005249" : "#8B0000",
+                  backgroundColor:
+                    item[2] === "Correct!" ? "#C8FACD" : "#FFE7D9",
                 }}
               >
                 <Grid container spacing={2}>
-                  <Grid item xs={12}>
+                  <Grid
+                    item
+                    xs={12}
+                    sx={{
+                      fontWeight: "bold",
+                    }}
+                  >
                     <p>
                       Question {index + 1}: {item[0]}
                     </p>

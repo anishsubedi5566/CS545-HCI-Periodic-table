@@ -296,10 +296,11 @@
 }
 
 .ele-det-header {
+  border-radius: 22px 22px 0 0;
   width: 100%;
   height: 300px;
   background: #fff;
-  border-radius: 2px;
+
   position: relative;
   overflow: hidden;
 }
@@ -312,6 +313,7 @@
 }
 
 .ele-det-header-inner {
+  border-radius: 20px;
   width: 100%;
   height: 100%;
   position: absolute;
@@ -462,7 +464,7 @@
 
 .ele-det-footer-box {
   height: 50px;
-  background: #000;
+  background: #333;
 }
 
 .ele-det-group-label {

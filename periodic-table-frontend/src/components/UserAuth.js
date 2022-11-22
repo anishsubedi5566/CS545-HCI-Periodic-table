@@ -55,6 +55,7 @@ const Login = (props) => {
           key="password"
           id="outlined-basic"
           label="Password"
+          type="password"
           variant="outlined"
           className="text-field"
           onChange={(e) => setPassword(e.target.value)}
@@ -145,6 +146,7 @@ const SignUp = (props) => {
         <TextField
           id="outlined-basic"
           label="Password"
+          type="password"
           variant="outlined"
           className="text-field"
           onChange={(e) => setPassword(e.target.value)}
@@ -155,6 +157,7 @@ const SignUp = (props) => {
           id="outlined-basic"
           label="Confirm Password"
           variant="outlined"
+          type="password"
           className="text-field"
           onChange={(e) => setRepeatPassword(e.target.value)}
           value={repeatPassword}

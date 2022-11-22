@@ -16,6 +16,8 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import firebaseui, { auth } from "firebaseui";
+import { useState } from "react";
+import { toast } from "react-toastify";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAVhf2zRYcIrOMVZSxhus70-IgLLSh_s2c",
@@ -29,6 +31,7 @@ const firebaseConfig = {
 function Auth() {
   return getAuth();
 }
+
 const moment = require("moment");
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -69,7 +72,8 @@ async function AppUserFavUpdate(fav) {
       }
     });
   } catch (e) {
-    console.log(e);
+    console.log("fav error ", e);
+
     return e;
   }
 }
@@ -173,11 +177,23 @@ async function AppUserLogin(data) {
       data.email,
       data.password
     );
+
     return true;
   } catch (error) {
     console.log(error);
     return error;
   }
+}
+
+//Function to check if user is logged in
+function AppUserCheck() {
+  const [user, setUser] = useState(null);
+  if (user === null) {
+    getAuth().onAuthStateChanged((user) => {
+      setUser(user);
+    });
+  }
+  return user;
 }
 export {
   AppUserCreation,
@@ -188,4 +204,5 @@ export {
   AppUserGetDb,
   AppUserFavourites,
   AppUserFavUpdate,
+  AppUserCheck,
 };
