@@ -1,11 +1,12 @@
 import React from "react";
 import '../../App.css';
+import Modal from 'react-modal';
 
-const SearchElements = () => {
+const SearchElements = (props) => {
     return(
-        <div>
+        <Modal>
             <p>SearchElements</p>
-        </div>
+        </Modal>
     )
 }
 
