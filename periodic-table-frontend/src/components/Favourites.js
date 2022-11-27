@@ -95,9 +95,9 @@ const Favourites = ({ user }) => {
   if (loading) {
     return <div>Loading...</div>;
   } else {
-    if (favourites.length === 0) {
+    if (favourites.length === 0 || favourites === undefined) {
       return (
-        <div style={{ alignItems: "center" }}>
+        <div style={{ textAlign: "-webkit-center" }}>
           <Card
             sx={{
               maxWidth: 500,
