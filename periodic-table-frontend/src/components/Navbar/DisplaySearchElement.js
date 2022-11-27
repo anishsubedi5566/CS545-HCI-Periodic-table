@@ -18,8 +18,8 @@ function DisplaySearchElement({element, func}){
                     <div>{element.name}</div>
                 </div>
                 <div className="navbar-search-tab-value">
-                    <label>Density</label>
-                    <div>{`${element.density} g/cm³`}</div>
+                    <label>Atomic Mass</label>
+                    <div>{`${element.atomic_mass} u`}</div>
                 </div>
             </div>
         </div>
