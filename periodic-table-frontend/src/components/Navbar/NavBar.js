@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../../App.css";
+import { useDataLayerValue } from "../context-api/DataLayer";
+import { actionTypes } from "../context-api/reducer";
 import { onAuthStateChanged } from "firebase/auth";
 import { Auth, AppUserLogout } from "../Firebase";
-import { Button, Modal } from "@mui/material";
+import {  Modal } from "@mui/material";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import Avatar from "react-avatar";
+import SearchElements from "./SearchElements";
 const auth = Auth();
 
 const NavBar = () => {
@@ -14,6 +17,10 @@ const NavBar = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState(null);
   const [open, setOpen] = useState(false);
+  const [menuCloseClass, setMenuCloseClass] = useState("");
+  const [openSearchModal, setOpenSearchModal] = useState(false);
+  const [{ periodicSearch }, dispatch] = useDataLayerValue();
+
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -39,9 +46,26 @@ const NavBar = () => {
     }, 1000);
   };
 
+  const handleMenuState = () => {
+		if (periodicSearch === "hidebx") {
+			setMenuCloseClass("menu-tapped");
+			setOpenSearchModal(true); // open search modal
+			dispatch({
+				type: actionTypes.SEARCH_UI_TOGGLE,
+				periodicSearch: "",
+			});
+		} else {
+			setOpenSearchModal(false); // close search modal
+			dispatch({
+				type: actionTypes.SEARCH_UI_TOGGLE,
+				periodicSearch: "hidebx",
+			});
+		}
+	};
+
   return (
     <div className="navbar">
-      <div>
+      <div onClick={handleMenuState} className={`navbar-item navbar-menu ${menuCloseClass}`}>
         <div className="middle"></div>
       </div>
       <div className="navbar-name">
@@ -103,6 +127,11 @@ const NavBar = () => {
           </h4>
         </div>
       )}
+      <SearchElements
+          func={setMenuCloseClass}
+          searchModalVal={openSearchModal}
+          searchModalFunc={setOpenSearchModal}
+      />
     </div>
   );
 };
