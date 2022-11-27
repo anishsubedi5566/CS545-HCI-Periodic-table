@@ -11,6 +11,7 @@ const SearchElements = (props) => {
     const [byAtomicNumber, setByAtomicNumber] = useState('navbar-sort-type navbar-sort-selected');
 	const [byName, setByName] = useState('navbar-sort-type');
 	const [bySymbol, setBySymbol] = useState('navbar-sort-type');
+    const [byAtomicMass, setByAtomicMass] = useState('navbar-sort-type');
     let elementData = searchList;
 
     //search elements
@@ -61,6 +62,7 @@ const SearchElements = (props) => {
                 })
                 setByName('navbar-sort-type')
                 setBySymbol('navbar-sort-type')
+                setByAtomicMass('navbar-sort-type')
                 setByAtomicNumber('navbar-sort-type navbar-sort-selected')
         }
         // By Name
@@ -72,6 +74,7 @@ const SearchElements = (props) => {
 			})
 			setByAtomicNumber('navbar-sort-type')
 			setBySymbol('navbar-sort-type')
+            setByAtomicMass('navbar-sort-type')
 			setByName('navbar-sort-type navbar-sort-selected')
 		}
         // By Symbol
@@ -84,8 +87,22 @@ const SearchElements = (props) => {
 			})
 			setByAtomicNumber('navbar-sort-type')
 			setByName('navbar-sort-type')
+            setByAtomicMass('navbar-sort-type')
 			setBySymbol('navbar-sort-type navbar-sort-selected')
 		}
+        //By Mass
+        if (value === 'atomic-mass'){
+            const sortByAtomicMass = elements;
+            sortByAtomicMass.sort((a, b) => a.atomic_mass - b.atomic_mass)
+            dispatch({
+                type: actionTypes.SEARCH_LIST,
+                searchList: sortByAtomicMass
+            })
+            setByAtomicNumber('navbar-sort-type')
+			setByName('navbar-sort-type')
+			setBySymbol('navbar-sort-type')
+            setByAtomicMass('navbar-sort-type navbar-sort-selected')
+        }
     }
 
     // NAV BAR TABS
@@ -124,6 +141,7 @@ const SearchElements = (props) => {
                 <div onClick={() => sortByValue('atomic-number')} className={byAtomicNumber}>Atomic Number</div>
                 <div onClick={() => sortByValue('name')} className={byName}>Name</div>
                 <div onClick={() => sortByValue('symbol')} className={bySymbol}>Symbol</div>
+                <div onClick={() => sortByValue('atomic-mass')} className={byAtomicMass}>Atomic Weight</div>
             </div>
             <aside className="navbar-search-tab-container">
                 <section className="navbar-search-tab-box flex-row">
