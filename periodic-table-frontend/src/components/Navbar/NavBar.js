@@ -5,7 +5,7 @@ import { useDataLayerValue } from "../context-api/DataLayer";
 import { actionTypes } from "../context-api/reducer";
 import { onAuthStateChanged } from "firebase/auth";
 import { Auth, AppUserLogout } from "../Firebase";
-import { Button, Modal } from "@mui/material";
+import {  Modal } from "@mui/material";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import Avatar from "react-avatar";
@@ -62,7 +62,6 @@ const NavBar = () => {
 			});
 		}
 	};
-  console.log(periodicSearch);
 
   return (
     <div className="navbar">
