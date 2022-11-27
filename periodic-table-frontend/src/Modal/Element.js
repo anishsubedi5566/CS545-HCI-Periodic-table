@@ -74,12 +74,9 @@ function Element(props) {
   const handleAdd = (elementData) => {
     console.log("add element", elementData);
     console.log("favourites in element", fav);
-    if (fav === undefined) {
-      toast.error("Must be logged in to add to favourites");
-    } else if (fav.some((element) => element.number === elementData.number)) {
+    if (fav.some((element) => element.number === elementData.number)) {
       toast.error(`${elementData.name} already in favourites`);
     } else {
-      console.log("in else", elementData);
       AppUserFavourites(elementData).then((res) => {
         if (res === true) {
           toast.success(`${elementData.name} added in favourites`);
@@ -231,7 +228,7 @@ function Element(props) {
           <ElementValue label="Period: " value={elementData.ypos} />
           <ElementValue
             label="Emmision spectrum: "
-            value={elementData.spectral_img ? elementData.spectral_img : "N/A"}
+            value={elementData.spectral_img ? <a href={elementData.spectral_img} target='_blank'>{elementData.spectral_img}</a> : "N/A"}
           />
 
           <ElementLable label="Atomic Properties" />

@@ -29,6 +29,7 @@ const Login = (props) => {
               autoClose: 2000,
             });
             navigate("/");
+            window.location.reload();
           }, 1000);
         } else {
           toast.error(res.message);
@@ -112,6 +113,7 @@ const SignUp = (props) => {
               autoClose: 2000,
             });
             navigate("/");
+            window.location.reload();
           }, 1000);
         } else {
           toast.error(res.message);
