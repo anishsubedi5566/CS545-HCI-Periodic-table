@@ -62,6 +62,7 @@ const NavBar = () => {
 			});
 		}
 	};
+  console.log(periodicSearch);
 
   return (
     <div className="navbar">
