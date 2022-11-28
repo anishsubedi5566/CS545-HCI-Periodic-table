@@ -51,11 +51,11 @@ async function AppUserGetDb() {
         favourites = doc.data().favourites;
       }
     });
-    console.log("scores", scores);
-    console.log("fav", favourites);
+    // console.log("scores", scores);
+    // console.log("fav", favourites);
     return { scores, moment, favourites };
   } catch (e) {
-    console.log(e);
+    // console.log(e);
     return e;
   }
 }
@@ -72,7 +72,7 @@ async function AppUserFavUpdate(fav) {
       }
     });
   } catch (e) {
-    console.log("fav error ", e);
+    // console.log("fav error ", e);
 
     return e;
   }
@@ -82,7 +82,7 @@ async function AppUserDbUpdate(score) {
   try {
     const querySnapshot = await getDocs(collection(db, "users"));
     //current user
-    console.log("score updating", score);
+    // console.log("score updating", score);
     querySnapshot.forEach((doc) => {
       if (doc.data().uid === getAuth().currentUser.uid) {
         updateDoc(doc.ref, {

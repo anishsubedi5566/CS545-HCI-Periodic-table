@@ -4,14 +4,17 @@ import { useDataLayerValue } from "../context-api/DataLayer";
 import { actionTypes } from "../context-api/reducer";
 import '../../App.css';
 import Modal from 'react-modal';
+import Element from "../../Modal/Element";
 
 const SearchElements = (props) => {
-    const [{ elements }] = useDataLayerValue();
+    const [{ elements, colorMap }] = useDataLayerValue();
     const [{ searchList, periodicSearch}, dispatch] = useDataLayerValue();
     const [byAtomicNumber, setByAtomicNumber] = useState('navbar-sort-type navbar-sort-selected');
 	const [byName, setByName] = useState('navbar-sort-type');
 	const [bySymbol, setBySymbol] = useState('navbar-sort-type');
     const [byAtomicMass, setByAtomicMass] = useState('navbar-sort-type');
+    const [showElementModal, setShowElementModal] = useState(false);
+    const [elementsData, setElementsData] = useState(null);
     let elementData = searchList;
 
     //search elements
@@ -107,22 +110,28 @@ const SearchElements = (props) => {
 
     // NAV BAR TABS
 	const handleNavBarElementTab = (atomicNo) => {
-		closeDetailsModal(periodicSearch) // close search modal
-		// set selected element
+		// closeDetailsModal(periodicSearch) // close search modal
 		const selectedElement = searchList.filter((element) => element.number === atomicNo)[0]
-		
-		dispatch({
-			type: actionTypes.SET_DETAILS_MODAL,
-			periodicDetails: true
-		})
-
-		dispatch({
-			type: actionTypes.SET_SELECTED_ELEMENT,
-			periodicSelectedElement: selectedElement 
-		})
+		setShowElementModal(true);
+        setElementsData(selectedElement);
 	}
 
+    const handleCloseElementModal = () => {
+        setShowElementModal(false);
+        setElementsData(null);
+        // props.searchModalVal = true
+    }
+
     return(
+        <>
+        {showElementModal && (
+            <Element
+              isOpen={showElementModal}
+              element={elementsData}
+              handleClose={handleCloseElementModal}
+              colorMap={colorMap}
+            />
+        )}
         <Modal overlayClassName={`navbar-search-container ${periodicSearch}`}
             className="navbar-search-inner flex-row"
             isOpen={props.searchModalVal}
@@ -130,6 +139,7 @@ const SearchElements = (props) => {
             onRequestClose={() => {
                 closeDetailsModal(periodicSearch)
             }}
+            shouldFocusAfterRender={false}
         >
             <input type="text"
                 onChange={(e) => handleSearch(e.target.value)}
@@ -151,6 +161,7 @@ const SearchElements = (props) => {
                 </section>
             </aside>
         </Modal>
+        </>
     )
 }
 

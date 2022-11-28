@@ -97,6 +97,7 @@ function Element(props) {
       onRequestClose={handleCloseModal}
       contentLabel={elementData.name}
       shouldCloseOnOverlayClick={true}
+      shouldFocusAfterRender={false}
     >
       <section className="ele-det-holder">
         <header className="ele-det-header">
