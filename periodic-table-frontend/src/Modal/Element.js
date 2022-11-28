@@ -4,9 +4,7 @@ import ElementValue from "../Modal/ElementValue";
 import ElementLable from "./ElementLable";
 import data from "../PeriodicTableJSON.json";
 import "../App.css";
-import { Button } from "@mui/material";
 import { AppUserFavourites, AppUserGetDb } from "../components/Firebase";
-import { style } from "@mui/system";
 import { toast } from "react-toastify";
 
 ReactModal.setAppElement("#root");
@@ -229,7 +227,7 @@ function Element(props) {
           <ElementValue label="Period: " value={elementData.ypos} />
           <ElementValue
             label="Emmision spectrum: "
-            value={elementData.spectral_img ? <a href={elementData.spectral_img} target='_blank'>{elementData.spectral_img}</a> : "N/A"}
+            value={elementData.spectral_img ? <a className="ele-spect-link" href={elementData.spectral_img} target='_blank' rel="noreferrer">{elementData.spectral_img}</a> : "N/A"}
           />
 
           <ElementLable label="Atomic Properties" />
