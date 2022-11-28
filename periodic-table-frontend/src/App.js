@@ -10,7 +10,7 @@ import Favourites from "./components/Favourites";
 
 function App() {
   let local = localStorage.getItem("user");
-  console.log("local in appjs", local);
+  // console.log("local in appjs", local);
   return (
     <BrowserRouter>
       <div className="App">

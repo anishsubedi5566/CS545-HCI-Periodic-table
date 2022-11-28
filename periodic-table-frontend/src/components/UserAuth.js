@@ -44,7 +44,7 @@ const Login = (props) => {
         <p className="login-text">Email</p>
         <TextField
           key="email"
-          id="outlined-basic"
+          id="outlined-basic-email"
           label="Email"
           variant="outlined"
           className="text-field"
@@ -54,7 +54,7 @@ const Login = (props) => {
         <p className="login-text">Password</p>
         <TextField
           key="password"
-          id="outlined-basic"
+          id="outlined-basic-password"
           label="Password"
           type="password"
           variant="outlined"

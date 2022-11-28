@@ -277,6 +277,7 @@
 	height: 100%;
 	margin: auto;
 	flex-direction: column;
+  cursor: pointer;
 }
 
 .navbar-search-txtbox {
