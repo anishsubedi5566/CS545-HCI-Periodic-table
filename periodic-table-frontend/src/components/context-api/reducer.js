@@ -12,11 +12,7 @@ export const initialState = {
         "lanthanide": "#9400D3",
         "actinide": "#EE82EE",
         "metalloid": "#73D2DE",
-        "unknown, probably transition metal": "#191970",
-        "unknown, probably post-transition metal": "#218380",
-        "unknown, probably metalloid": "#73D2DE",
         "unknown, but predicted to be an alkali metal": "#8F2D56",
-        "unknown, predicted to be noble gas": "#FFBC42"
     },
     elementsOpacity: 1,
     periodicDetails: false,

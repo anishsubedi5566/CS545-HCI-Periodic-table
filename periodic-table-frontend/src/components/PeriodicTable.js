@@ -5,28 +5,10 @@ import Legend from "./Legend";
 import { useDataLayerValue } from "./context-api/DataLayer";
 import "../App.css";
 
-const colorMap = {
-  "noble gas": "#FFBC42",
-  "alkaline earth metal": "#808000",
-  "diatomic nonmetal": "#D81159",
-  "polyatomic nonmetal": "#FF4500",
-  "alkali metal": "#8F2D56",
-  "transition metal": "#191970",
-  "post-transition metal": "#218380",
-  lanthanide: "#9400D3",
-  actinide: "#EE82EE",
-  metalloid: "#73D2DE",
-  "unknown, probably transition metal": "#191970",
-  "unknown, probably post-transition metal": "#218380",
-  "unknown, probably metalloid": "#73D2DE",
-  "unknown, but predicted to be an alkali metal": "#8F2D56",
-  "unknown, predicted to be noble gas": "#FFBC42",
-};
-
 const PeriodicTable = () => {
   const [showElementModal, setShowElementModal] = useState(false);
   const [elementData, setElementData] = useState(null);
-  const [{ elementsOpacity }] = useDataLayerValue();
+  const [{ elementsOpacity, colorMap }] = useDataLayerValue();
 
   const handleElementClick = (atomicNo) => {
     const selectedElement = data.elements.filter(
