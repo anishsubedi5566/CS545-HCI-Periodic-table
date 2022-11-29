@@ -35,16 +35,16 @@
   width: 200px;
   border: none;
   font-weight: 600;
-  border-color: #fac7b4;
+  border-color: #e8f0fe;
   border-radius: 10px;
 
-  background: #fac7b4;
+  background: #e8f0fe;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 }
 .answer-button:hover {
-  color: #fff;
-  background: #f37c63;
+  color: #e8f0fe;
+  background: #000000;
 }
 .answer-button-correct {
   margin: 10px;
