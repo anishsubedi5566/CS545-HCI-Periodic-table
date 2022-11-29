@@ -169,15 +169,6 @@ export const q = [
       { answerText: "Iron", isCorrect: false },
     ],
     correctAnswer: "Iridium",
-  },{
-    questionText: "How many element groups are there?",
-    answerOptions: [
-      { answerText: "26", isCorrect: false },
-      { answerText: "11", isCorrect: false },
-      { answerText: "16", isCorrect: false },
-      { answerText: "18", isCorrect: true },
-    ],
-    correctAnswer: "Iridium",
   },
   {
     questionText: "How many element groups are there?",
@@ -369,5 +360,4 @@ export const q = [
     ],
     correctAnswer: "Nitrogen",
   },
-  
 ];
