@@ -58,6 +58,7 @@ html {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  outline: none;
 }
 
 .modal-change {
@@ -141,7 +142,6 @@ html {
   height: 10%;
   display: flex;
   justify-content: center;
-
   align-items: baseline;
 }
 

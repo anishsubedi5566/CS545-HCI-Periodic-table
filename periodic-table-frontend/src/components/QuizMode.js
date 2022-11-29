@@ -38,7 +38,7 @@ const QuizMode = ({ user }) => {
               <div>
                 <h3>Information</h3>
                 {inst.map((i) => (
-                  <p className="information">{i}</p>
+                  <p className="information" key={i}>{i}</p>
                 ))}
                 <Button
                   variant="outlined"
