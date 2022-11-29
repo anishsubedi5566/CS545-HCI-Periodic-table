@@ -151,7 +151,7 @@ const SearchElements = (props) => {
                 <div onClick={() => sortByValue('atomic-number')} className={byAtomicNumber}>Atomic Number</div>
                 <div onClick={() => sortByValue('name')} className={byName}>Name</div>
                 <div onClick={() => sortByValue('symbol')} className={bySymbol}>Symbol</div>
-                <div onClick={() => sortByValue('atomic-mass')} className={byAtomicMass}>Atomic Mass</div>
+                <div onClick={() => sortByValue('atomic-mass')} className={byAtomicMass}>Atomic Weight</div>
             </div>
             <aside className="navbar-search-tab-container">
                 <section className="navbar-search-tab-box flex-row">

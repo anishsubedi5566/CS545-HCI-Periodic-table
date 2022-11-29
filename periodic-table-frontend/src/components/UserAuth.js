@@ -58,6 +58,7 @@ const Login = (props) => {
           className="text-field"
           onChange={(e) => setEmail(e.target.value)}
           value={email}
+          required
         />
         <p className="login-text">Password</p>
         <TextField
@@ -69,6 +70,7 @@ const Login = (props) => {
           className="text-field"
           onChange={(e) => setPassword(e.target.value)}
           value={password}
+          required
         />
 
         <Button
@@ -190,6 +192,7 @@ const SignUp = (props) => {
           className="text-field"
           onChange={(e) => setUsername(e.target.value)}
           value={username}
+          required
         />
         <p className="login-text">Email</p>
         <TextField
@@ -199,6 +202,7 @@ const SignUp = (props) => {
           className="text-field"
           onChange={(e) => setEmail(e.target.value)}
           value={email}
+          required
         />
 
         <p className="login-text">Password</p>
@@ -210,6 +214,7 @@ const SignUp = (props) => {
           className="text-field"
           onChange={(e) => setPassword(e.target.value)}
           value={password}
+          required
         />
         <p className="login-text">Confirm Password</p>
         <TextField
@@ -220,6 +225,7 @@ const SignUp = (props) => {
           className="text-field"
           onChange={(e) => setRepeatPassword(e.target.value)}
           value={repeatPassword}
+          required
         />
         <Button
           variant="contained"

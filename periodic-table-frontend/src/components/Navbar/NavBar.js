@@ -15,7 +15,6 @@ const auth = Auth();
 
 const NavBar = () => {
   const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState(null);
   const [open, setOpen] = useState(false);
   const [menuCloseClass, setMenuCloseClass] = useState("");
@@ -33,7 +32,6 @@ const NavBar = () => {
         setUser(user);
         localStorage.setItem("user", JSON.stringify(user));
 
-        setIsLoading(false);
       } else {
         localStorage.removeItem("user");
         setUser(null);
@@ -132,12 +130,22 @@ const NavBar = () => {
                   </div>
                   <div className="modal-body">
                     <TextField
+                      disabled
+                      label="Email"
+                      type="email"
+                      sx={{ width: "60%", marginBottom: "2rem" }}
+                      onChange={(e) => setOldPassword(e.target.value)}
+                      value={user.email}
+                    />
+
+                    <TextField
                       label="Old Password"
                       type="password"
                       variant="outlined"
                       sx={{ width: "60%", marginBottom: "2rem" }}
                       onChange={(e) => setOldPassword(e.target.value)}
                       value={oldPassword}
+                      required
                     />
 
                     <TextField
@@ -147,6 +155,7 @@ const NavBar = () => {
                       sx={{ width: "60%", marginBottom: "2rem" }}
                       onChange={(e) => setPassword(e.target.value)}
                       value={password}
+                      required
                     />
 
                     <TextField
@@ -156,6 +165,7 @@ const NavBar = () => {
                       sx={{ width: "60%", marginBottom: "2rem" }}
                       onChange={(e) => setConfirmPassword(e.target.value)}
                       value={confirmPassword}
+                      required
                     />
 
                     <h4>
