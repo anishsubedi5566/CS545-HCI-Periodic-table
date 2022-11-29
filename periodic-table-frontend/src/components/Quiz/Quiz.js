@@ -26,13 +26,15 @@ const Quiz = () => {
   const [isAnswered, setIsAnswered] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
   const handleRestart = () => {
-    setCurrentQuestion(0);
-    setShowScore(false);
-    setScore(0);
-    setResult([]);
-    setShowResult(false);
-    setIsAnswered(false);
-    setIsDisabled(false);
+    if (window.confirm("Restart Quiz?")) {
+      setCurrentQuestion(0);
+      setShowScore(false);
+      setScore(0);
+      setResult([]);
+      setShowResult(false);
+      setIsAnswered(false);
+      setIsDisabled(false);
+    }
   };
 
   const handleClose = () => {
@@ -149,7 +151,7 @@ const Quiz = () => {
             <Card
               className="question-section"
               sx={{
-                backgroundColor: "#f8e1d8",
+                backgroundColor: "#f7fafa",
                 boxShadow: "None",
                 borderRadius: "1rem",
               }}
