@@ -4,9 +4,10 @@ import { FcOk } from "react-icons/fc";
 import { MdCancel } from "react-icons/md";
 import { AppUserDbUpdate } from "../Firebase";
 import "./Quiz.css";
-import { Button, Card, Grid } from "@mui/material";
+import { Button, Card, Grid, IconButton, Tooltip } from "@mui/material";
 import { Box } from "@mui/system";
 import { useNavigate } from "react-router-dom";
+import { IoMdCloseCircle } from "react-icons/io";
 let questions = q.sort(() => Math.random() - 0.5);
 questions.map((question, idx) => {
   question.answerOptions = question.answerOptions.sort(
@@ -33,6 +34,14 @@ const Quiz = () => {
     setIsAnswered(false);
     setIsDisabled(false);
   };
+
+  const handleClose = () => {
+    if (window.confirm("Are you sure you want to quit?")) {
+      AppUserDbUpdate(score);
+      setShowScore(true);
+    }
+  };
+
   const handleAnswerOptionClick = (isCorrect, answerText) => {
     setIsDisabled(true);
     setIsAnswered(true);
@@ -176,6 +185,20 @@ const Quiz = () => {
               </div>
             </Card>
           </div>
+          <Tooltip title="Close Quiz">
+            <IconButton
+              style={{
+                position: "absolute",
+                bottom: "5rem",
+                alignSelf: "center",
+                scale: "1.5",
+                color: "#999999",
+              }}
+              onClick={handleClose}
+            >
+              <IoMdCloseCircle />
+            </IconButton>
+          </Tooltip>
         </Grid>
       )}
     </div>

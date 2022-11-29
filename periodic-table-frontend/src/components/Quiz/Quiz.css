@@ -54,25 +54,24 @@
   font-weight: 600;
   border-color: #fac7b4;
   border-radius: 10px;
-
+  border: #005249 solid;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
-  color: #fff;
-  background: #4caf50;
+  color: #005249;
+  background: #c8facd;
 }
 .answer-button-incorrect {
   margin: 10px;
   padding: 15px;
   width: 200px;
-  border: none;
+  border: #8b0000 solid;
   font-weight: 600;
-  border-color: #fac7b4;
   border-radius: 10px;
 
   cursor: pointer;
   transition: all 0.2s ease-in-out;
-  color: #fff;
-  background: #f44336;
+  color: #8b0000;
+  background: #ffe7d9;
 }
 .results {
   display: flex;
