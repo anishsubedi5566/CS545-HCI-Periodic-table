@@ -2,9 +2,12 @@
 import { initializeApp } from "firebase/app";
 import {
   createUserWithEmailAndPassword,
+  EmailAuthProvider,
   getAuth,
+  reauthenticateWithCredential,
   signInWithEmailAndPassword,
   signOut,
+  updatePassword,
   updateProfile,
 } from "firebase/auth";
 import {
@@ -58,6 +61,31 @@ async function AppUserGetDb() {
     // console.log(e);
     return e;
   }
+}
+
+async function ChangePassword(data) {
+  const auth = getAuth();
+  let res = false;
+  const credential = EmailAuthProvider.credential(
+    auth.currentUser.email,
+    data.oldPassword
+  );
+  reauthenticateWithCredential(auth.currentUser, credential)
+    .then(() => {
+      updatePassword(auth.currentUser, data.password)
+        .then(() => {
+          res = true;
+          toast.success("Password changed successfully");
+        })
+        .catch((error) => {
+          toast.error(error.message);
+        });
+      return res;
+    })
+    .catch((error) => {
+      toast.error(error.message);
+    });
+  return res;
 }
 
 async function AppUserFavUpdate(fav) {
@@ -205,4 +233,5 @@ export {
   AppUserFavourites,
   AppUserFavUpdate,
   AppUserCheck,
+  ChangePassword,
 };

@@ -7,13 +7,14 @@ import "./Quiz.css";
 import { Button, Card, Grid } from "@mui/material";
 import { Box } from "@mui/system";
 import { useNavigate } from "react-router-dom";
-const questions = q.sort(() => Math.random() - 0.5);
+let questions = q.sort(() => Math.random() - 0.5);
 questions.map((question, idx) => {
   question.answerOptions = question.answerOptions.sort(
     () => Math.random() - 0.5
   );
   return question;
 });
+questions = questions.slice(0, 10);
 const Quiz = () => {
   const navigate = useNavigate();
   const [currentQuestion, setCurrentQuestion] = useState(0);
