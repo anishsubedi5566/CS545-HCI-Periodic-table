@@ -4,6 +4,8 @@ import {
   ValueAxis,
   Chart,
   BarSeries,
+  Legend,
+  Title,
 } from "@devexpress/dx-react-chart-material-ui";
 import { Grid, Paper } from "@mui/material";
 import { AppUserGetDb } from "../Firebase";
@@ -27,7 +29,6 @@ const Progress = () => {
       setLoading(false);
     });
   }, []);
-  console.log("d", d);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -39,7 +40,14 @@ const Progress = () => {
             <ArgumentAxis />
             <ValueAxis />
 
-            <BarSeries valueField="value" argumentField="argument" />
+            <BarSeries
+              valueField="value"
+              argumentField="argument"
+              name="Score"
+              color="#3f51b5"
+            />
+            <Title text="Progress" />
+            <Legend />
           </Chart>
         </Grid>
       </Paper>

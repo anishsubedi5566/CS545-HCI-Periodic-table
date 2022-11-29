@@ -43,7 +43,11 @@ const QuizMode = ({ user }) => {
                 <Button
                   variant="outlined"
                   startIcon={<HiAcademicCap />}
-                  onClick={() => setQuizMode("quiz")}
+                  onClick={() => {
+                    if (window.confirm("Start Quiz?")) {
+                      setQuizMode("quiz");
+                    }
+                  }}
                 >
                   Start Quiz
                 </Button>
