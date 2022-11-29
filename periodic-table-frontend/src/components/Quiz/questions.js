@@ -10,6 +10,16 @@ export const q = [
     correctAnswer: "Dimitri Mendeleev",
   },
   {
+    questionText: "Which of the following forms the basis of the modern periodic table?",
+    answerOptions: [
+      { answerText: "Atomic number", isCorrect: true },
+      { answerText: "Atomic mass", isCorrect: false },
+      { answerText: "Number of nucleons", isCorrect: false },
+      { answerText: "All of the above", isCorrect: false },
+    ],
+    correctAnswer: "Atomic number",
+  },
+  {
     questionText: "What is the chemical element for the symbol Y?",
     answerOptions: [
       { answerText: "Yttrium", isCorrect: true },
@@ -20,6 +30,16 @@ export const q = [
     correctAnswer: "Yttrium",
   },
   {
+    questionText: "Which of the following is the most reactive element of the group 17?",
+    answerOptions: [
+      { answerText: "Fluorine", isCorrect: true },
+      { answerText: "Oxygen", isCorrect: false },
+      { answerText: "Sodium", isCorrect: false },
+      { answerText: "Magnesium", isCorrect: false },
+    ],
+    correctAnswer: "Fluorine",
+  },
+  {
     questionText: "What is the chemical element for the symbol Sc?",
     answerOptions: [
       { answerText: "Scandium", isCorrect: true },
@@ -28,6 +48,16 @@ export const q = [
       { answerText: "Selenium", isCorrect: false },
     ],
     correctAnswer: "Scandium",
+  },
+  {
+    questionText: "Which of the following is the correct order of the atomic radii of the elements oxygen, fluorine and nitrogen?",
+    answerOptions: [
+      { answerText: "O < F < N", isCorrect: false },
+      { answerText: "F < O < N", isCorrect: true },
+      { answerText: "O < N < F", isCorrect: false },
+      { answerText: "N < F < O", isCorrect: false },
+    ],
+    correctAnswer: "F < O < N",
   },
   {
     questionText: "What is the chemical element for the symbol Sr?",
@@ -50,6 +80,16 @@ export const q = [
     correctAnswer: "Neon",
   },
   {
+    questionText: "What number of elements are present in periodic table?",
+    answerOptions: [
+      { answerText: "119", isCorrect: true },
+      { answerText: "118", isCorrect: false },
+      { answerText: "108", isCorrect: false },
+      { answerText: "127", isCorrect: false },
+    ],
+    correctAnswer: "119",
+  },
+  {
     questionText: "What is the chemical element for the symbol Cm?",
     answerOptions: [
       { answerText: "Curium", isCorrect: true },
@@ -58,6 +98,16 @@ export const q = [
       { answerText: "Cerium", isCorrect: false },
     ],
     correctAnswer: "Curium",
+  },
+  {
+    questionText: "What is the most electropositive halogen?",
+    answerOptions: [
+      { answerText: "I", isCorrect: true },
+      { answerText: "F", isCorrect: false },
+      { answerText: "Cl", isCorrect: false },
+      { answerText: "Br", isCorrect: false },
+    ],
+    correctAnswer: "I",
   },
   {
     questionText: "What is the chemical element for the symbol Zr?",
@@ -70,15 +120,34 @@ export const q = [
     correctAnswer: "Zirconium",
   },
   {
+    questionText: "Modern Periodic Law was given by..?",
+    answerOptions: [
+      { answerText: "Mosley", isCorrect: true },
+      { answerText: "Mendeleev", isCorrect: false },
+      { answerText: "Dalton", isCorrect: false },
+      { answerText: "Dobereiner", isCorrect: false },
+    ],
+    correctAnswer: "Mosley",
+  },
+  {
     questionText: "What is the chemical element for the symbol Tl?",
     answerOptions: [
       { answerText: "Thallium", isCorrect: true },
       { answerText: "Tellurium", isCorrect: false },
       { answerText: "Terbium", isCorrect: false },
-
       { answerText: "Tin", isCorrect: false },
     ],
     correctAnswer: "Thallium",
+  },
+  {
+    questionText: "Which of the following element has zero valency?",
+    answerOptions: [
+      { answerText: "Helium", isCorrect: true },
+      { answerText: "Lithium", isCorrect: false },
+      { answerText: "Beryllium", isCorrect: false },
+      { answerText: "Fluorine", isCorrect: false },
+    ],
+    correctAnswer: "Helium",
   },
   {
     questionText: "What is the chemical element for the symbol Mn?",
@@ -91,6 +160,16 @@ export const q = [
     correctAnswer: "Manganese",
   },
   {
+    questionText: "How many elements are present in the sixth period of modern periodic table?",
+    answerOptions: [
+      { answerText: "32", isCorrect: true },
+      { answerText: "18", isCorrect: false },
+      { answerText: "22", isCorrect: false },
+      { answerText: "36", isCorrect: false },
+    ],
+    correctAnswer: "32",
+  },
+  {
     questionText: "What is the chemical element for the symbol Fl?",
     answerOptions: [
       { answerText: "Flerovium", isCorrect: true },
@@ -99,6 +178,16 @@ export const q = [
       { answerText: "Fermium", isCorrect: false },
     ],
     correctAnswer: "Flerovium",
+  },
+  {
+    questionText: "Which option describes the achievements of the Mendeleev’s Periodic Table?",
+    answerOptions: [
+      { answerText: "prediction of noble gases", isCorrect: true },
+      { answerText: "it eliminated the blank spaces left in the table", isCorrect: false },
+      { answerText: "predicting that the elements can be arranged based on their properties", isCorrect: false },
+      { answerText: "an element in a trend has an average atomic mass of the elements above and below it", isCorrect: false },
+    ],
+    correctAnswer: "prediction of noble gases",
   },
   {
     questionText: "What is the chemical element for the symbol Bi?",
@@ -111,6 +200,16 @@ export const q = [
     correctAnswer: "Bismuth",
   },
   {
+    questionText: "Which of the following is not a group of classification for elements",
+    answerOptions: [
+      { answerText: "Water", isCorrect: true },
+      { answerText: "Metals", isCorrect: false },
+      { answerText: "Halogens", isCorrect: false },
+      { answerText: "Metalloids", isCorrect: false },
+    ],
+    correctAnswer: "Water",
+  },
+  {
     questionText: "What is the chemical element for the symbol Hf?",
     answerOptions: [
       { answerText: "Hafnium", isCorrect: true },
@@ -119,6 +218,16 @@ export const q = [
       { answerText: "Holmium", isCorrect: false },
     ],
     correctAnswer: "Hafnium",
+  },
+  {
+    questionText: "Boron is a non-metal and is placed under group 13 and period 2. How can boron form bonds with other elements?",
+    answerOptions: [
+      { answerText: "by sharing 3 electrons", isCorrect: true },
+      { answerText: "by sharing 5 electrons", isCorrect: false },
+      { answerText: "by sharing 2 electrons", isCorrect: false },
+      { answerText: "by sharing 1 electron", isCorrect: false },
+    ],
+    correctAnswer: "by sharing 3 electrons",
   },
   {
     questionText: "What is the chemical element for the symbol Ta?",
@@ -131,6 +240,16 @@ export const q = [
     correctAnswer: "Tantalum",
   },
   {
+    questionText: "A student learns that the atomic size depends on the atomic radius of the elements. How does the atomic radius of elements in the third-period change as one goes from sodium to argon?",
+    answerOptions: [
+      { answerText: "atomic radius decreases from sodium to argon", isCorrect: true },
+      { answerText: "atomic radius increases from sodium to argon", isCorrect: false },
+      { answerText: "atomic radius increases as new shells are added", isCorrect: false },
+      { answerText: "atomic radius decreases due to the addition of new shells", isCorrect: false },
+    ],
+    correctAnswer: "atomic radius decreases from sodium to argon",
+  },
+  {
     questionText: "What is the chemical element for the symbol W?",
     answerOptions: [
       { answerText: "Tungsten", isCorrect: true },
@@ -139,6 +258,16 @@ export const q = [
       { answerText: "Yttrium", isCorrect: false },
     ],
     correctAnswer: "Tungsten",
+  },
+  {
+    questionText: "Which element exists in liquid state at room temperature?",
+    answerOptions: [
+      { answerText: "Bromine", isCorrect: true },
+      { answerText: "Iodine", isCorrect: false },
+      { answerText: "Mercury", isCorrect: false },
+      { answerText: "Chlorine", isCorrect: false },
+    ],
+    correctAnswer: "Bromine",
   },
   {
     questionText: "What is the chemical element for the symbol Re?",
@@ -151,6 +280,16 @@ export const q = [
     correctAnswer: "Rhenium",
   },
   {
+    questionText: "Atomicity of inert gases are?",
+    answerOptions: [
+      { answerText: "1", isCorrect: true },
+      { answerText: "2", isCorrect: false },
+      { answerText: "3", isCorrect: false },
+      { answerText: "4", isCorrect: false },
+    ],
+    correctAnswer: "1",
+  },
+  {
     questionText: "What is the chemical element for the symbol Os?",
     answerOptions: [
       { answerText: "Osmium", isCorrect: true },
@@ -159,6 +298,16 @@ export const q = [
       { answerText: "Palladium", isCorrect: false },
     ],
     correctAnswer: "Osmium",
+  },
+  {
+    questionText: "Which of the following is incorrect about the modern periodic table?",
+    answerOptions: [
+      { answerText: "Modern Periodic table has 15 columns", isCorrect: true },
+      { answerText: "Colums are called groups", isCorrect: false },
+      { answerText: "Rows are called periods", isCorrect: false },
+      { answerText: "From left to right, each element has one more proton than the element before it", isCorrect: false },
+    ],
+    correctAnswer: "Modern Periodic table has 15 columns",
   },
   {
     questionText: "What is the chemical element for the symbol Ir?",
@@ -359,5 +508,85 @@ export const q = [
       { answerText: "Carbon Dioxide", isCorrect: false },
     ],
     correctAnswer: "Nitrogen",
+  },
+  {
+    questionText: "What happens to the electropositive character of elements on moving from left to right in a periodic table?",
+    answerOptions: [
+      { answerText: "Decreases", isCorrect: true },
+      { answerText: "Increases", isCorrect: false },
+      { answerText: "First increases then decreases", isCorrect: false },
+      { answerText: "First decreases then increases", isCorrect: false },
+    ],
+    correctAnswer: "Decreases",
+  },
+  {
+    questionText: "What is the other name for group 18th elements?",
+    answerOptions: [
+      { answerText: "Noble gases", isCorrect: true },
+      { answerText: "Alkali metals", isCorrect: false },
+      { answerText: "Halogens", isCorrect: false },
+      { answerText: "Transition metals", isCorrect: false },
+    ],
+    correctAnswer: "Noble gases",
+  },
+  {
+    questionText: "Which group elements are called transition metals?",
+    answerOptions: [
+      { answerText: "14th group", isCorrect: true },
+      { answerText: "2nd group", isCorrect: false },
+      { answerText: "4th group", isCorrect: false },
+      { answerText: "18th group", isCorrect: false },
+    ],
+    correctAnswer: "14th group",
+  },
+  {
+    questionText: "Which of the following elements has 2 shells and both are completely filled?",
+    answerOptions: [
+      { answerText: "Helium", isCorrect: false },
+      { answerText: "Neon", isCorrect: true },
+      { answerText: "Calcium", isCorrect: false },
+      { answerText: "Boron", isCorrect: false },
+    ],
+    correctAnswer: "Neon",
+  },
+  {
+    questionText: "Which group supports the guidelines of the Modern Periodic table?",
+    answerOptions: [
+      { answerText: "group 1", isCorrect: false },
+      { answerText: "groups 1 and 18", isCorrect: true },
+      { answerText: "groups 1 and 2", isCorrect: false },
+      { answerText: "groups 18", isCorrect: false },
+    ],
+    correctAnswer: "group 1 and 18",
+  },
+  {
+    questionText: "What is the trend of valency along the periods in the Modern Periodic table?",
+    answerOptions: [
+      { answerText: "it increases from left to right", isCorrect: false },
+      { answerText: "it increases and then decreases", isCorrect: true },
+      { answerText: "it decreases from right to left", isCorrect: false },
+      { answerText: "it decreases and then increases", isCorrect: false },
+    ],
+    correctAnswer: "it increases and then decreases",
+  },
+  {
+    questionText: "What is the order of the metallic character down the group?",
+    answerOptions: [
+      { answerText: "it decreases as new shells are added to the element", isCorrect: false },
+      { answerText: "it increases as electrons move away from the nucleus", isCorrect: true },
+      { answerText: "increases as new atoms are added in the same shell", isCorrect: false },
+      { answerText: "it decreases as the effective nuclear charge on the electron increases", isCorrect: false },
+    ],
+    correctAnswer: "it increases as electrons move away from the nucleus",
+  },
+  {
+    questionText: "While going up in a group of periodic table, the metallic quality..?",
+    answerOptions: [
+      { answerText: "increases", isCorrect: false },
+      { answerText: "decreases", isCorrect: true },
+      { answerText: "remains the same", isCorrect: false },
+      { answerText: "first increases then decreases", isCorrect: false },
+    ],
+    correctAnswer: "decreases",
   },
 ];
