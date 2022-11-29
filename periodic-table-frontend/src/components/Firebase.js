@@ -5,6 +5,7 @@ import {
   EmailAuthProvider,
   getAuth,
   reauthenticateWithCredential,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signOut,
   updatePassword,
@@ -65,27 +66,36 @@ async function AppUserGetDb() {
 
 async function ChangePassword(data) {
   const auth = getAuth();
-  let res = false;
   const credential = EmailAuthProvider.credential(
     auth.currentUser.email,
     data.oldPassword
   );
-  reauthenticateWithCredential(auth.currentUser, credential)
-    .then(() => {
-      updatePassword(auth.currentUser, data.password)
-        .then(() => {
-          res = true;
-          toast.success("Password changed successfully");
-        })
-        .catch((error) => {
-          toast.error(error.message);
-        });
-      return res;
-    })
-    .catch((error) => {
-      toast.error(error.message);
+
+  try {
+    await reauthenticateWithCredential(auth.currentUser, credential);
+    await updatePassword(auth.currentUser, data.password);
+    toast.success("Password changed successfully");
+
+    return true;
+  } catch (error) {
+    toast.error(error.message);
+
+    return false;
+  }
+}
+
+async function ForgotPassword(email) {
+  const auth = getAuth();
+  try {
+    await sendPasswordResetEmail(auth, email, {
+      url: "http://localhost:3000/login",
     });
-  return res;
+    toast.success("Password reset link sent to your email");
+    return true;
+  } catch (error) {
+    toast.error(error.message);
+    return false;
+  }
 }
 
 async function AppUserFavUpdate(fav) {
@@ -234,4 +244,5 @@ export {
   AppUserFavUpdate,
   AppUserCheck,
   ChangePassword,
+  ForgotPassword,
 };

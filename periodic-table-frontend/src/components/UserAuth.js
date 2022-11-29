@@ -1,18 +1,26 @@
-import { TextField, Button } from "@mui/material";
+import { TextField, Button, Modal, IconButton } from "@mui/material";
 import { Container } from "@mui/system";
 import React, { useState } from "react";
 import { StyledEngineProvider } from "@mui/system";
 import "./UserAuth.css";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { AppUserCreation, AppUserLogin } from "./Firebase";
+import { AppUserCreation, AppUserLogin, ForgotPassword } from "./Firebase";
+import { GrFormClose } from "react-icons/gr";
 
 const Login = (props) => {
   const navigate = useNavigate();
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
+  const [forgotPasswordModal, setForgotPasswordModal] = useState(false);
 
+  async function handleForgotPassword() {
+    const res = await ForgotPassword(email);
+    if (res === true) {
+      setForgotPasswordModal(false);
+    }
+  }
   const handleSubmit = () => {
     if (email === "" || password === "") {
       toast.error("Please fill all the fields");
@@ -81,6 +89,55 @@ const Login = (props) => {
             Sign up
           </Button>
         </p>
+        <Button
+          className="forgot-password"
+          onClick={() => setForgotPasswordModal(true)}
+        >
+          Forgot Password?
+        </Button>
+
+        {forgotPasswordModal ? (
+          <Modal
+            open={forgotPasswordModal === true}
+            onClose={() => setForgotPasswordModal(false)}
+          >
+            <div className="modal">
+              <div className="modal-title">
+                <h1>Reset password </h1>
+                <IconButton
+                  onClick={() => setForgotPasswordModal(false)}
+                  style={{
+                    position: "absolute",
+                    top: "20px",
+                    right: "20px",
+                  }}
+                >
+                  <GrFormClose />
+                </IconButton>
+              </div>
+              <div className="modal-body">
+                <h4>
+                  Enter your email address and we'll send you a link to reset
+                  your password.
+                </h4>
+                <TextField
+                  label="Email"
+                  type="email"
+                  variant="outlined"
+                  sx={{ width: "60%", marginBottom: "2rem" }}
+                  onChange={(e) => setEmail(e.target.value)}
+                  value={email}
+                />
+
+                <h4>
+                  <Link onClick={handleForgotPassword} className="link-logout">
+                    Submit
+                  </Link>
+                </h4>
+              </div>
+            </div>
+          </Modal>
+        ) : null}
       </Container>
     </div>
   );

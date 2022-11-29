@@ -5,11 +5,12 @@ import { useDataLayerValue } from "../context-api/DataLayer";
 import { actionTypes } from "../context-api/reducer";
 import { onAuthStateChanged } from "firebase/auth";
 import { Auth, AppUserLogout, ChangePassword } from "../Firebase";
-import { Modal, TextField } from "@mui/material";
+import { IconButton, Modal, TextField } from "@mui/material";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import Avatar from "react-avatar";
 import SearchElements from "./SearchElements";
+import { GrFormClose } from "react-icons/gr";
 const auth = Auth();
 
 const NavBar = () => {
@@ -57,12 +58,15 @@ const NavBar = () => {
       toast.error("Passwords do not match");
     } else {
       let data = { oldPassword, password };
-      await ChangePassword(data).then((res) => {
-        console.log("res", res);
-
+      const res = await ChangePassword(data);
+      console.log("res ", res);
+      if (res === true) {
+        setConfirmPassword("");
+        setPassword("");
+        setOldPassword("");
         setChangePasswordModal(false);
         setOpen(false);
-      });
+      }
     }
   }
 
@@ -108,10 +112,23 @@ const NavBar = () => {
 
           <div>
             {changePasswordModal === true ? (
-              <Modal open={open === true} onClose={() => setOpen(false)}>
+              <Modal
+                open={open === true}
+                onClose={() => setChangePasswordModal(false)}
+              >
                 <div className="modal-change">
                   <div className="modal-title">
                     <h1>Change password </h1>
+                    <IconButton
+                      onClick={() => setChangePasswordModal(false)}
+                      style={{
+                        position: "absolute",
+                        top: "20px",
+                        right: "25px",
+                      }}
+                    >
+                      <GrFormClose />
+                    </IconButton>
                   </div>
                   <div className="modal-body">
                     <TextField
@@ -154,6 +171,16 @@ const NavBar = () => {
                 <div className="modal">
                   <div className="modal-title">
                     <h1>Welcome, {user.displayName} </h1>
+                    <IconButton
+                      onClick={() => setOpen(false)}
+                      style={{
+                        position: "absolute",
+                        top: "20px",
+                        right: "20px",
+                      }}
+                    >
+                      <GrFormClose />
+                    </IconButton>
                   </div>
                   <div className="modal-body">
                     <h4>
