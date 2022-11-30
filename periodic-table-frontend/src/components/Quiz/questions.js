@@ -360,6 +360,16 @@ export const q = [
     correctAnswer: "Sn",
   },
   {
+    questionText: "What is the symbol for Flerovium?",
+    answerOptions: [
+      { answerText: "Fl", isCorrect: true },
+      { answerText: "Fll", isCorrect: false },
+      { answerText: "Ro", isCorrect: false },
+      { answerText: "Vi", isCorrect: false },
+    ],
+    correctAnswer: "Fl",
+  },
+  {
     questionText: "What is the atomic number for the element tantalum?",
     answerOptions: [
       { answerText: "73", isCorrect: true },
@@ -440,6 +450,26 @@ export const q = [
     correctAnswer: "P",
   },
   {
+    questionText: "What is the symbol for Lutetium?",
+    answerOptions: [
+      { answerText: "Lu", isCorrect: true },
+      { answerText: "Lt", isCorrect: false },
+      { answerText: "Le", isCorrect: false },
+      { answerText: "ti", isCorrect: false },
+    ],
+    correctAnswer: "Lu",
+  },
+  {
+    questionText: "What is the symbol for Plutonium?",
+    answerOptions: [
+      { answerText: "Pu", isCorrect: true },
+      { answerText: "Pl", isCorrect: false },
+      { answerText: "Pt", isCorrect: false },
+      { answerText: "Po", isCorrect: false },
+    ],
+    correctAnswer: "Pu",
+  },
+  {
     questionText: "The symbol Fe stands for which element?",
     answerOptions: [
       { answerText: "Iron", isCorrect: true },
@@ -488,6 +518,36 @@ export const q = [
       { answerText: "28", isCorrect: false },
     ],
     correctAnswer: "7",
+  },
+  {
+    questionText: "What is the atomic number for Chromium?",
+    answerOptions: [
+      { answerText: "14", isCorrect: false },
+      { answerText: "24", isCorrect: true },
+      { answerText: "21", isCorrect: false },
+      { answerText: "28", isCorrect: false },
+    ],
+    correctAnswer: "24",
+  },
+  {
+    questionText: "What is the atomic number for Iodine?",
+    answerOptions: [
+      { answerText: "14", isCorrect: false },
+      { answerText: "53", isCorrect: true },
+      { answerText: "21", isCorrect: false },
+      { answerText: "28", isCorrect: false },
+    ],
+    correctAnswer: "53",
+  },
+  {
+    questionText: "What is the atomic number for Potassium?",
+    answerOptions: [
+      { answerText: "14", isCorrect: false },
+      { answerText: "19", isCorrect: true },
+      { answerText: "21", isCorrect: false },
+      { answerText: "28", isCorrect: false },
+    ],
+    correctAnswer: "19",
   },
   {
     questionText: "Which element is the most abundant element in the universe?",
