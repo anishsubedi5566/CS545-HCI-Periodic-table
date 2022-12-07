@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/CS-545-HCI-Periodic-table/static/css/main.82bf0670.css",
+    "main.js": "/CS-545-HCI-Periodic-table/static/js/main.8c14d1cd.js",
+    "static/js/787.eb5551cf.chunk.js": "/CS-545-HCI-Periodic-table/static/js/787.eb5551cf.chunk.js",
+    "static/media/wikipedia-button.svg": "/CS-545-HCI-Periodic-table/static/media/wikipedia-button.ba31b234f720c20130b1.svg",
+    "static/media/clear_btn.svg": "/CS-545-HCI-Periodic-table/static/media/clear_btn.19d48b0e5a2fa5cebbdf.svg",
+    "static/media/search-icon.svg": "/CS-545-HCI-Periodic-table/static/media/search-icon.d935998b4d3ea5ed9979.svg",
+    "static/media/next-button.svg": "/CS-545-HCI-Periodic-table/static/media/next-button.28361db961cb2f88ce13.svg",
+    "static/media/prev-button.svg": "/CS-545-HCI-Periodic-table/static/media/prev-button.5784d350862c07adb5bd.svg",
+    "static/media/back-button.svg": "/CS-545-HCI-Periodic-table/static/media/back-button.4b7b87cb2725dbb432bd.svg",
+    "index.html": "/CS-545-HCI-Periodic-table/index.html",
+    "main.82bf0670.css.map": "/CS-545-HCI-Periodic-table/static/css/main.82bf0670.css.map",
+    "main.8c14d1cd.js.map": "/CS-545-HCI-Periodic-table/static/js/main.8c14d1cd.js.map",
+    "787.eb5551cf.chunk.js.map": "/CS-545-HCI-Periodic-table/static/js/787.eb5551cf.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.82bf0670.css",
+    "static/js/main.8c14d1cd.js"
+  ]
+}
