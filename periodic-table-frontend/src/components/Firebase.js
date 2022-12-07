@@ -88,7 +88,7 @@ async function ForgotPassword(email) {
   const auth = getAuth();
   try {
     await sendPasswordResetEmail(auth, email, {
-      url: "http://localhost:3000/login",
+      url: "https://periodic-table-cs545.vercel.app/login",
     });
     toast.success("Password reset link sent to your email");
     return true;
